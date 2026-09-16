@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.py[cod]
+# Preserve upstream as a separately pinned, unmodified checkout.
+upstream/
+# Raw simulation evidence is retained locally, not intended for blind commits.
+results/
+# Local diagnostics can include usernames, host paths and machine identifiers.
+docs/pyarrow11-crash.txt
+*.log
+core
+core.*
+.env
+.env.*

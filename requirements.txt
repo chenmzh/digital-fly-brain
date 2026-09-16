@@ -1,0 +1,22 @@
+# Linux/Python 3.10 adaptation of upstream environment_full.yml.
+# Core numerical/simulation versions match the authors' full environment.
+# PyArrow 11 crashes in AWS/Curl teardown on this host; only I/O is upgraded.
+# Notebook/UI and Windows-specific conda packages are intentionally omitted.
+brian2==2.5.1
+numpy==1.22.3
+scipy==1.8.1
+pandas==1.4.3
+pyarrow==17.0.0
+joblib==1.2.0
+Cython==0.29.33
+sympy==1.12
+mpmath==1.3.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+setuptools==67.8.0
+wheel==0.38.4
+packaging==23.1
+pyparsing==3.0.9
+python-dateutil==2.8.2
+pytz==2023.3
+six==1.16.0
