@@ -11,9 +11,9 @@ https://github.com/chenmzh/digital-fly-brain
 - 统一总报告和三份历史 PDF、LaTeX/参考文献/制图源码及构建验证脚本；首轮排版源码 ZIP。
 - 保留的分析源码快照和补测前后结果，避免将事后设计写成原方案。
 
-**主阅读入口：[统一研究报告（重构版）：24页](../habituation/report.pdf)** · [阅读摘要](../habituation/REPORT.md) · [源码与验证](../habituation/synthesis/README.md)。
+**主阅读入口：[统一研究报告（语言修订版）](../habituation/report.pdf)** · [阅读摘要](../habituation/REPORT.md) · [源码与验证](../habituation/synthesis/README.md)。
 
-统一稿按“机制充分性—模型内因果—前瞻预测—经典特征边界”重写，一份共同方法、统一术语/编号/参考文献，不是拼接旧PDF。旧报告中的阶段性“尚未测试”在总论中更新，已完成的工作不再重复列为未来任务；历史原文保留。重构不新增仿真或拟合，167个已跟踪历史文件的字节保护记录见 `habituation/synthesis/preserved_sources.json`。
+当前统一稿按背景与方法、实验结果、讨论和结论编排，汇总全部三阶段的研究。语言修订删除了提问式标题和重复的说明性文字，重写摘要、正文、图注及在线摘要；实验数据、参数、判据和科学结论保持不变。旧统一稿可由提交 `50b2f15` 获取，三份分阶段报告继续原样保留。167个历史文件的字节保护记录见 `habituation/synthesis/preserved_sources.json`。
 
 历史报告入口：
 

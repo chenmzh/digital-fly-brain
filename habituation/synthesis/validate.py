@@ -50,7 +50,7 @@ def main():
         textpath=Path(temp)/'text.txt';boxpath=Path(temp)/'boxes.html'
         subprocess.run(['pdftotext','-layout',str(HAB/'report.pdf'),str(textpath)],check=True)
         raw=textpath.read_text();text=re.sub(r'\s+','',raw)
-        for token in ['1006','1212','90.22','9.88','1.036','3.019','0.490','0.732','0.591','4.303','98.0','83.3','29.4','事后综合','资格','尚未稳健建立','拟合','回顾性','前瞻','不等于','参考文献']:
+        for token in ['1006','1212','90.22','9.88','1.036','3.019','0.490','0.732','0.591','4.303','98.0','83.3','29.4','事后综合','比较条件','未获得一致支持','拟合','回顾性','前瞻','未能判断','参考文献']:
             assert token in text,'Missing numeric/narrative content '+token
         assert '\ufffd' not in text
         subprocess.run(['pdftotext','-bbox',str(HAB/'report.pdf'),str(boxpath)],check=True)

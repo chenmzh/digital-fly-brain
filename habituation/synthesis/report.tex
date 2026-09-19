@@ -15,38 +15,29 @@
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \makeatletter\newcommand{\inputrows}[1]{\@@input #1 }\makeatother
-\newcommand{\takeaway}[1]{\par\medskip\noindent\textbf{本节推进的认识：}#1\par\medskip}
 \pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small 连接组约束的习惯化样响应}\fancyhead[R]{\small 综合研究报告}\fancyfoot[C]{\small\thepage\,/\,\pageref*{LastPage}}
-\hypersetup{pdftitle={连接组约束的果蝇习惯化样响应：机制、预测与特征边界},pdfauthor={作者与单位待确认},pdfsubject={三阶段计算研究的逻辑重构；不新增实验、不拼接历史PDF}}
-\title{\bfseries 连接组约束的果蝇习惯化样响应\\[.4em]\Large 从机制充分性、因果归因到前瞻预测与特征边界}
+\hypersetup{pdftitle={果蝇连接组模型中的习惯化样响应：短时突触抑制、状态干预与响应预测},pdfauthor={作者与单位待确认},pdfsubject={基于JO-CE机械感觉通路的全脑计算研究}}
+\title{\bfseries 果蝇连接组模型中的习惯化样响应\\[.4em]\Large 短时突触抑制、状态干预与响应预测}
 \author{作者与单位待确认\\\small Digital Fly Brain 项目}
 \date{2026年9月19日\quad 综合研究报告}
 \begin{document}
 \maketitle\thispagestyle{fancy}
-\begin{center}\small 基于三个已完成研究阶段重新组织；不是旧PDF拼接。\\计算研究，尚未投稿或同行评审；不等于真实动物行为与生物机制确证。\end{center}
 \begin{abstract}
-连接组提供神经回路的结构，但不能自动保证模型具有跨刺激记忆。本研究以同一果蝇全脑连接图谱为约束，围绕JO-CE机械感觉输入和aBN1神经读出，依次检验动力学充分性、模型内记忆位置、低维预测能力以及经典习惯化特征。原固定连接模型M0在两种间隔下均无计数递减；只在4,764条兴奋性输出边上加入共享参数的短时突触抑制后，M1在短间隔产生90.22\%的早晚期递减及休息恢复。随后从相同训练末态分叉干预：aBN1初次均值8.2，训练后0.4；清除快状态仍为0.4，恢复资源则回到8.2，旁路驱动能力保留。为检验全脑复杂度的必要范围，两个各含两个拟合系数的低维代理先解释旧数据，再在102个新窗口上接受冻结预测检验；资源代理在3/3协议达到MAE不超过1.5脉冲的门槛，积累代理仅1/3，且局部非单调反弹暴露了二者的细节缺口。最后的特征补测支持部分恢复条件下的H3及人工输入率意义下的H5；H4(b)尚未稳健建立，H6与本次两个B的H8未见效应，H7缺少适用基线，H9/H10未完成检验。三个阶段共1006个正式观测窗口，既有审计回读1212个事件文件；这些不是独立动物样本。统一证据支持一个有限结论：局部可恢复资源足以产生部分习惯化样输出，并能被因果干预与前瞻预测约束，但不能据此唯一识别真实机制或证明完整连接结构不可替代。
+重复刺激引起的响应递减及休息后的恢复，是习惯化的基本特征。本研究采用果蝇全脑泄漏积分发放模型，以70个JO-CE机械感觉神经元为输入、aBN1脉冲计数为主要观测量，考察短时突触抑制能否产生上述现象。固定连接模型M0在两种刺激间隔下均未出现计数递减；在4,764条JO-CE兴奋性输出边加入可恢复资源变量后，M1在0.5s间隔下的早晚期递减比例为90.22\%，2s间隔下为9.88\%。对训练末态的干预显示，aBN1响应从初次的8.2降至0.4脉冲；仅重置快状态后仍为0.4，恢复突触资源后回到8.2。直接驱动aBN1时，训练前后的全脑事件记录一致。进一步比较两种低维响应模型：资源模型和积累模型分别用两个读出系数拟合已有数据，再对102个新观测窗口作前瞻预测。两者的总体RMSE分别为1.036和3.019脉冲，但均未准确再现强刺激下的局部响应回升。补充实验支持部分恢复条件下的多轮响应减弱，以及较弱人工输入引起较强相对递减；频率依赖的恢复加快未获得一致支持，平台后追加刺激和两种替代刺激均未产生预设效应，刺激特异性则因缺少可比较基线而无法判断。结果表明，局部资源耗竭与恢复能够解释本模型中的部分习惯化样响应，其平均计数可由低维模型近似预测。真实果蝇是否采用这一机制，以及完整连接结构对预测的贡献，仍需生物实验和结构对照检验。
 \end{abstract}
 \noindent\textbf{关键词：}连接组；习惯化；短时突触抑制；因果状态干预；低维代理；前瞻预测
 \clearpage
-\section*{阅读路线与结论层级}\addcontentsline{toc}{section}{阅读路线与结论层级}
-本文沿一条问题链展开，而不是按三次报告的文件顺序重复叙述。第\ref{sec:questions}节建立背景和统一方法，第\ref{sec:mechanism}节从正常传递推进到机制充分性与状态归因，第\ref{sec:prediction}节从旧曲线解释推进到冻结预测，第\ref{sec:hallmarks}节给出最新特征边界，第\ref{sec:discussion}节总结尚未解决的机制与结构问题。附录提供数量口径、设计时间线及复核入口。
-
-\begin{quote}\small
-\textbf{先区分四句话：}“模型能产生下降”是现象充分性；“改变资源会恢复输出”是特定模型内部的归因；“冻结模型能预测新条件”是有限范围的外推检验；“动物真正使用该机制”则需要独立生物实验。本文完成了前三类工作的一部分，没有完成第四类。
-\end{quote}
-
-\textbf{更新约定。}本稿是对已完成研究的事后综合，不声称整套研究从一开始就全部预先注册。旧报告的“尚未测试”按最新证据更新，失败、阴性、资格不足和探索性发现均保留。研究问题统一使用Q1--Q5；H1--H10只表示经典习惯化特征，不沿用旧阶段二的同名假设编号。三份历史PDF不修改。
+\begingroup\small\linespread{0.98}\selectfont
 \tableofcontents
-\clearpage
+\endgroup\clearpage
 \input{sections/framework.tex}
 \input{sections/mechanism.tex}
 \input{sections/prediction.tex}
 \input{sections/hallmarks.tex}
 \input{sections/discussion.tex}
-\clearpage
+\bigskip
 \phantomsection\addcontentsline{toc}{section}{参考文献}
-{\small\setlength{\bibsep}{3pt}\bibliographystyle{unsrtnat}\bibliography{references}}
+{\small\interlinepenalty=10000\setlength{\bibsep}{3pt}\bibliographystyle{unsrtnat}\bibliography{references}}
 \clearpage\appendix
 \input{sections/appendix.tex}
 \end{document}

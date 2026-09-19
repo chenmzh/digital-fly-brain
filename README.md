@@ -2,9 +2,9 @@
 
 基于 Shiu 等（Nature, 2024）的官方 Brian2 实现，先复现全脑神经活动，再研究连接组约束的动态机制。**本项目不是完整数字动物，不包含虚拟身体。** 原始基线没有可塑性；新增习惯化研究比较固定连接与局部短时突触抑制。
 
-> **主阅读入口：[统一研究报告（重构版，24页PDF）](habituation/report.pdf)** · [阅读摘要](habituation/REPORT.md) · [重构与源码](habituation/synthesis/README.md)
+> **[统一研究报告（语言修订版PDF）](habituation/report.pdf)** · [阅读摘要](habituation/REPORT.md) · [源码与修订说明](habituation/synthesis/README.md)
 >
-> 将三阶段按“机制充分性 → 因果归因 → 冻结预测 → 经典特征边界”重新组织，不是PDF拼接；三份历史报告保留不变。
+> 报告包括模型与方法、重复刺激实验、状态干预、低维预测和经典特征补测。当前版本重写了正文表述，实验数据和结论不变，三份历史报告保留。
 
 - 总体计划：[PLAN.md](PLAN.md)
 - 本机复现结果与限制：[docs/REPRODUCTION.md](docs/REPRODUCTION.md)
@@ -98,10 +98,10 @@ uv pip check --python .venv/bin/python
 
 ## 习惯化研究进展与下一步
 
-[统一总报告](habituation/report.pdf)将已完成证据串成一条问题链：
+[统一总报告](habituation/report.pdf)汇总以下实验：
 
-1. **机制充分性**：[首轮](habituation/RESULTS.md)的固定连接模型未见递减，局部短时突触抑制产生递减与恢复，但初次传递下降和下游地板问题保留。
-2. **因果归因与预测**：[阶段二](habituation/stage2/README.md)完成资源/快状态干预、旁路及低维代理的新输入前瞻检验，共201个正式窗口。代理拟合读出系数，未训练全脑参数。
-3. **特征边界**：[hallmarks补测](habituation/hallmarks/README.md)增加525个观测窗口。部分恢复H3与人工输入率H5有支持；H4(b)未稳健建立，H6和本次两种B的H8未见效应，H7资格不足，H9/H10未测。
+1. **重复刺激**：[首轮](habituation/RESULTS.md)的固定连接模型未见递减，局部短时突触抑制产生递减与恢复，但初次传递下降和下游地板问题保留。
+2. **状态干预与预测**：[阶段二](habituation/stage2/README.md)完成资源/快状态干预、旁路及低维代理的新输入前瞻检验，共201个正式窗口。代理拟合读出系数，未训练全脑参数。
+3. **经典特征补测**：[hallmarks补测](habituation/hallmarks/README.md)增加525个观测窗口。部分恢复H3与人工输入率H5有支持；H4(b)未稳健建立，H6和本次两种B的H8未见效应，H7资格不足，H9/H10未测。
 
 三阶段合计1006个观测窗口（含6个空白检查窗），不是1006个独立动物样本。本次统一写作未新增神经实验或拟合。尚未完成局部/随机图对照、真实行为验证、Flyvis复现、MaleCNS迁移或身体闭环；反弹的时序/结构来源与长期机制仍待检验。

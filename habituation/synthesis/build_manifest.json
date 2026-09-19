@@ -1,20 +1,20 @@
 {
-  "created_utc": "2026-09-19T17:04:34.391163+00:00",
+  "created_utc": "2026-09-19T17:38:32.744156+00:00",
   "compiler": "Tectonic 0.17.0",
   "source_sha256": {
-    "report.tex": "0607dc9a87c626c77c0ea0cfb1baef5ed491cba6dcc075ad7bdfdacb7bc0011d",
+    "report.tex": "a1bc3a3a5dff9edbbb7ce9896a3443ac162d729e7d5e60e41f425f5c95e42439",
     "references.bib": "cc615ee065c72dc892b3f140df34987fe0799f798a73e63963d34fbba849cf1f",
     "prepare_data.py": "deffc9b776ff2c26d414198f30523cea95e9e562828e616c499fd909b4897715",
     "build.sh": "28c29d5c3fb0e6cfc5fce33922b19a88cf947bf2d8f05ae92b6ac3f706313e60",
     "summary.json": "d597de1c6af311895eb83273837664713ec636b46e13ed3885fe67fd5d13f48b",
     "data_manifest.json": "7e23c430e42b829a908dd82dec14aba44db12e98b007aa42c6df67b20ccc5a22",
-    "EDITORIAL_PLAN.md": "b1f5906b822d8ecc43d8a287033f38bc275982022888b91281941315882baf8e",
-    "sections/appendix.tex": "13f27356fd5ddec3744a539d0c735b11789ce5d95d46fc30e218fdf790ce4179",
-    "sections/discussion.tex": "86eec89d9fc80d3ece84183a31b02d3bfb22c07e28bc07e352df3fb9dff0f465",
-    "sections/framework.tex": "3daebef36e33352344efdef503e6f9431147d57f5d6a0510cd2f564db7bf7aa8",
-    "sections/hallmarks.tex": "e301f6403bdd5527137a73f8454be73cf84e4926e9bfc483fb888ef60b809698",
-    "sections/mechanism.tex": "88327a8189e6449b0bd39293451ce0449ad64b11ca0add2e6f9244f35d8a5139",
-    "sections/prediction.tex": "6933f83cfd189932df00f2114587db7b9462fe74226124f0435cd93fa06eba7e",
+    "EDITORIAL_PLAN.md": "1573d27a124b1e947b88a8cb7b1719ad43b23324a9ce27fb5d48b44cb7eb258d",
+    "sections/appendix.tex": "296f1eb79b5292ad4794ef5f69f0b1bc6620e73132174af53f717bf027442248",
+    "sections/discussion.tex": "f2c5eb86918f7d1de574403e41331f65b903b641be52e883a61f7915994629c9",
+    "sections/framework.tex": "6b82d4b07bef1574b9a7e2ff4fe8d76e8430e0891590f494c8c68cd22fe00610",
+    "sections/hallmarks.tex": "fb94087e46ee97669657a45407806724cd2687f27c692cf209332227fc7e78cc",
+    "sections/mechanism.tex": "15beb67032f5f5f2f57fe21c68fb20e93ae76b15eeab6428b2df232be20f2a46",
+    "sections/prediction.tex": "3bb4c4a551d3c00fd1e9f7d986e005e847ebf39ba01cb30654f8479e213ad0de",
     "data/b_controls.tex": "fe7a3c25fffb173523a586aea80f95b6f87ee0319a441a8051c01df68dbd1b23",
     "data/base_static_2000.csv": "334465ecb3bb5fda5337f9e15132e5bd1dfb07f1efe89da20b4b058adbca0893",
     "data/base_static_500.csv": "334465ecb3bb5fda5337f9e15132e5bd1dfb07f1efe89da20b4b058adbca0893",
@@ -46,6 +46,6 @@
     "data/rebounds.tex": "9c7a2154df0fa90d2c3bb621f1646d2f549b7a9b14c5f6aca192487eb22c432f"
   },
   "pdf": "../report.pdf",
-  "pdf_sha256": "7e6f8e3d32fd7ab1366b4100cfc3007b087c18d242d64a27eb32fbfb420f22fe",
-  "pdf_bytes": 455381
+  "pdf_sha256": "4551a9411e78be1b117b53a29e6c5362e5e74cdbae87cddb5b38eb325dc4e077",
+  "pdf_bytes": 374102
 }
