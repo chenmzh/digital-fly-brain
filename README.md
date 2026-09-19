@@ -1,11 +1,15 @@
-# 数字果蝇：全脑复现基线
+# 数字果蝇：全脑基线与习惯化机制研究
 
 基于 Shiu 等（Nature, 2024）的官方 Brian2 实现，先复现全脑神经活动，再研究连接组约束的动态机制。**本项目不是完整数字动物，不包含虚拟身体。** 原始基线没有可塑性；新增习惯化研究比较固定连接与局部短时突触抑制。
+
+> **主阅读入口：[统一研究报告（重构版，24页PDF）](habituation/report.pdf)** · [阅读摘要](habituation/REPORT.md) · [重构与源码](habituation/synthesis/README.md)
+>
+> 将三阶段按“机制充分性 → 因果归因 → 冻结预测 → 经典特征边界”重新组织，不是PDF拼接；三份历史报告保留不变。
 
 - 总体计划：[PLAN.md](PLAN.md)
 - 本机复现结果与限制：[docs/REPRODUCTION.md](docs/REPRODUCTION.md)
 - 习惯化研究、文献和全脑实验：[habituation/README.md](habituation/README.md)
-- 最新经典特征补测：[结果](habituation/hallmarks/REPORT.md)、[6页PDF](habituation/hallmarks/report.pdf)。
+- 分项资料：经典特征补测：[结果](habituation/hallmarks/REPORT.md)、[6页PDF](habituation/hallmarks/report.pdf)。
 - 模型论文：https://www.nature.com/articles/s41586-024-07763-9
 
 ## 已完成
@@ -26,7 +30,7 @@
 
 ## 公开仓库与本地文件
 
-公开版本包含基线与习惯化实验代码、依赖清单、研究方案、汇总 CSV/JSON、三份 PDF 及排版源码；首轮还提供排版源码 ZIP。不包含 `.venv/`、`upstream/`、任何层级的 `results/`、工具/字体缓存和原始运行日志。汇总结果可直接查看，但全脑原始事件仍保留在本机；新机器需准备环境与上游数据，重新运行实验才能独立回读原始事件。同步范围与历史状态说明见 [docs/PUBLICATION.md](docs/PUBLICATION.md)。
+公开版本包含基线与习惯化实验代码、依赖清单、研究方案、汇总 CSV/JSON、统一总报告与三份历史 PDF 及排版源码；首轮还提供排版源码 ZIP。不包含 `.venv/`、`upstream/`、任何层级的 `results/`、工具/字体缓存和原始运行日志。汇总结果可直接查看，但全脑原始事件仍保留在本机；新机器需准备环境与上游数据，重新运行实验才能独立回读原始事件。同步范围与历史状态说明见 [docs/PUBLICATION.md](docs/PUBLICATION.md)。
 
 本项目是独立复现工作，不是原作者官方实现的替代或背书。上游仓库使用 MIT 许可证；其版权声明保留在独立检出的仓库中。
 
@@ -92,6 +96,12 @@ uv pip check --python .venv/bin/python
 
 标准输出日志位于 `results/*.log`；依赖快照位于 `docs/environment.freeze.txt`。仿真结果不应与原始生物实验数据混为一谈。
 
-## 下一步
+## 习惯化研究进展与下一步
 
-已在独立的 [habituation/](habituation/README.md) 中完成 JO-CE 机械感觉连续刺激实验：固定连接模型未见递减，局部短时突触抑制产生部分习惯化样神经输出特征；详见[结果与限制](habituation/RESULTS.md)。随后完成[阶段二三轮闭环研究](habituation/stage2/README.md)：资源状态因果干预、两个低维代理及冻结预测的新输入检验，新增201个响应窗口；见[阶段报告PDF](habituation/stage2/report.pdf)。低维代理做了读出系数拟合，但尚未开展全脑参数训练、Flyvis 复现、MaleCNS 迁移或身体闭环。之后完成[经典hallmarks补测](habituation/hallmarks/README.md)：新增525个观测窗口、独立回读1026个事件文件。H3在部分恢复条件下获支持，H5方向一致且2/3达到预设效应量；H4(b)未稳健建立，H6和本次两种B的H8未见效应，H7缺少可比较基线，H9/H10未测。上述都是神经代理的条件性结论；本次按用户明确授权同步代码、汇总与报告，不上传原始事件。局部反弹的时序/结构来源、自然刺激泛化和长期机制仍待检验。
+[统一总报告](habituation/report.pdf)将已完成证据串成一条问题链：
+
+1. **机制充分性**：[首轮](habituation/RESULTS.md)的固定连接模型未见递减，局部短时突触抑制产生递减与恢复，但初次传递下降和下游地板问题保留。
+2. **因果归因与预测**：[阶段二](habituation/stage2/README.md)完成资源/快状态干预、旁路及低维代理的新输入前瞻检验，共201个正式窗口。代理拟合读出系数，未训练全脑参数。
+3. **特征边界**：[hallmarks补测](habituation/hallmarks/README.md)增加525个观测窗口。部分恢复H3与人工输入率H5有支持；H4(b)未稳健建立，H6和本次两种B的H8未见效应，H7资格不足，H9/H10未测。
+
+三阶段合计1006个观测窗口（含6个空白检查窗），不是1006个独立动物样本。本次统一写作未新增神经实验或拟合。尚未完成局部/随机图对照、真实行为验证、Flyvis复现、MaleCNS迁移或身体闭环；反弹的时序/结构来源与长期机制仍待检验。

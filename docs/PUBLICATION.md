@@ -8,10 +8,14 @@ https://github.com/chenmzh/digital-fly-brain
 
 - 全脑基线与习惯化实验入口、分析程序、单元测试和固定协议。
 - 首轮 JO-CE/STD 研究、阶段二三轮闭环研究、经典 hallmarks 补测的汇总 CSV/JSON、来源哈希与研究记录。
-- 三份报告 PDF、LaTeX/参考文献/制图源码及构建验证脚本；首轮排版源码 ZIP。
+- 统一总报告和三份历史 PDF、LaTeX/参考文献/制图源码及构建验证脚本；首轮排版源码 ZIP。
 - 保留的分析源码快照和补测前后结果，避免将事后设计写成原方案。
 
-报告入口：
+**主阅读入口：[统一研究报告（重构版）：24页](../habituation/report.pdf)** · [阅读摘要](../habituation/REPORT.md) · [源码与验证](../habituation/synthesis/README.md)。
+
+统一稿按“机制充分性—模型内因果—前瞻预测—经典特征边界”重写，一份共同方法、统一术语/编号/参考文献，不是拼接旧PDF。旧报告中的阶段性“尚未测试”在总论中更新，已完成的工作不再重复列为未来任务；历史原文保留。重构不新增仿真或拟合，167个已跟踪历史文件的字节保护记录见 `habituation/synthesis/preserved_sources.json`。
+
+历史报告入口：
 
 1. [首轮详细报告：24页](../habituation/paper/report.pdf)
 2. [阶段二闭环研究：10页](../habituation/stage2/report.pdf)

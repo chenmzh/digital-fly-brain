@@ -1,0 +1,68 @@
+\section{从现象充分性到模型内归因：局部慢状态填补了什么缺口？}
+\label{sec:mechanism}
+\subsection{Q1：先检验原模型，而不是直接加入“会遗忘”的规则}
+首轮协议比较M0与M1、$T=0.5/2$s、五种输入实现，每条12次200ms刺激，并从同一末态独立等待2/10s探测。正式样本为20条序列、280个响应窗口。相同种子在模型、间隔、重复和恢复探测之间的实际感觉事件逐点一致。
+
+在此范围内，M0的aBN1计数逐次恒定：四例每次10脉冲，一例每次9脉冲，两个间隔都如此；aDN1/aDN2计数也恒定。这不是“下降未达显著性”，而是所记录窗口计数没有跨次变化。不过，该结果只约束当前输入、参数与初态，不能否定所有固定权重循环网络的慢动力学。
+
+\begin{table}[!htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\caption{现象层面的关键对照。除D外为每300ms窗口的计数，五个实现均值；$P_2,P_{10}$为独立恢复探测。}
+\label{tab:baseline}
+\begin{tabular}{lrrrrrr}\toprule
+模型/间隔 & $I$ & $E$ & $L$ & $D$(\%) & $P_2$ & $P_{10}$\\\midrule
+\inputrows{data/baseline.tex}\bottomrule
+\end{tabular}\end{table}
+
+\newcommand{\BasePanel}[2]{\begin{tikzpicture}\begin{axis}[width=.95\linewidth,height=5.3cm,title={#2},xlabel={刺激序号},ylabel={aBN1脉冲数},xmin=1,xmax=12,ymin=0,ymax=11,xtick={1,4,8,12},grid=major,grid style={black!10},tick label style={font=\small}]
+\addplot[black!60,thick,mark=square*] table[x=trial,y=mean]{data/base_static_#1.csv};
+\addplot[Blue,thick,mark=*] table[x=trial,y=mean]{data/base_std_#1.csv};
+\end{axis}\end{tikzpicture}}
+\begin{figure}[!htbp]\centering
+\begin{minipage}{.48\linewidth}\BasePanel{500}{$T=0.5$s}\end{minipage}\hfill
+\begin{minipage}{.48\linewidth}\BasePanel{2000}{$T=2$s}\end{minipage}
+\par\smallskip\small 灰色方块：M0\qquad\textcolor{Blue}{蓝色圆点：M1}
+\caption{局部STD改变重复响应，固定结构本身没有在当前协议下产生递减。图为跨输入实现均值，不是动物总体曲线或置信区间；逐实现值见附录。两幅图使用相同纵轴，保留M1初次低于M0的差异。}
+\end{figure}
+
+M1在短间隔的平均D为90.22\%，五例范围81.25\%--100\%，全部通过递减、平台及10s恢复筛查；长间隔平均D仅9.88\%，五例均未达到30\%门槛。短间隔的2s探测均值5.40、10s为8.20。组均值回到初次，不代表每例精确恢复：10s探测/首次为87.5\%--112.5\%。恢复判据要求$R_{10}-L\geq0.20E$且$R_{10}\geq0.80I$，不是要求每个实现恰好100\%。
+
+\subsection{为什么充分性结果仍留下两项解释漏洞}
+首先，M1初次aBN1均值已从M0的9.8降到8.2，约降低16.3\%。规则在第一段200ms内就消耗资源，因此不能只画各自归一化曲线，假装正常传递完全不受影响。其次，M1的aDN1初次只有0--2脉冲，平均1.2，其中一例初次为零；下游相对下降容易受地板效应支配。
+
+\begin{table}[!htbp]\centering\small
+\caption{原始下游读出的限制仍然存在；后来的强旁路并没有消除自然输入时的地板问题。末期为每例末三次再跨实现平均。}
+\begin{tabular}{lrr}\toprule
+条件 & aDN1首次$\to$末期 & aDN2首次$\to$末期\\\midrule
+M0，两间隔 & $2.2\to2.2$ & $3.4\to3.4$\\
+M1，0.5s & $1.2\to0$ & $2.2\to0$\\
+M1，2s & $1.2\to0.2$ & $2.2\to1.4$\\\bottomrule
+\end{tabular}\end{table}
+
+因此，首轮足以回答“这种局部机制能否产生现象”，但尚不能回答“输出下降是不是某种快状态残留”或“整个神经执行通路是否已经失能”。这两项漏洞直接决定下一组实验，而不是再扫描STD参数。
+
+\subsection{Q2：从同一末态派生受控反事实}
+复用1701--1705的输入，各重复12次短间隔刺激。最后300ms窗口结束后再等待200ms，于$t=6$s保存训练末态。每个分支都从这个末态出发，给相同A探测，分别不干预、恢复资源、清除快状态、同时恢复两者；另用不经过JO-CE的直接aBN1驱动检验通路。
+
+资源救援将$x$置1并同步事件驱动的更新时间戳；快状态恢复将膜电位$v$、驱动$g$、最近发放时刻和不应期标记（代码中的\path{lastspike}与\path{not_refractory}）置为构建时值而不改变$x$。如果不同时处理时间戳，资源在下一次事件前的惰性更新会混入额外变化，因此这不是一句“把变量改成1”即可完成的干预。
+
+预设要求资源救援达到M1初次的至少80\%，清快状态与sham相差不超过1脉冲；双重恢复须与初次的\emph{全脑相对事件}一致。最后一项比仅比较aBN1计数更严格，主要约束实现正确性。
+
+\begin{figure}[!htbp]\centering
+\begin{tikzpicture}\begin{axis}[width=.87\linewidth,height=5.3cm,xmin=-.4,xmax=4.4,ymin=0,ymax=10,xtick={0,1,2,3,4},xticklabels={初次,训练后,清快状态,恢复资源,双重恢复},ylabel={aBN1脉冲数},tick label style={font=\small},grid=major,grid style={black!10}]
+\addplot[Blue,only marks,mark=*,mark size=3pt,error bars/.cd,y dir=both,y explicit] table[x=x,y=mean,y error minus=minus,y error plus=plus]{data/causal.csv};
+\end{axis}\end{tikzpicture}
+\caption{受控状态干预把现象解释收窄到资源状态。五例均通过原门槛；误差棒为输入实现间最小--最大值，不是置信区间。相同A条件中的资源恢复是人工干预，不能计作经典H8。}
+\label{fig:causal}
+\end{figure}
+
+独立回读90个事件文件后，初次aBN1均值8.2，sham为0.4；只清快状态仍为0.4，资源恢复则为8.2。双重恢复5/5与初次的完整事件表一致。这里的救援回到\emph{M1自身初次水平}，不是M0的9.8；这一区别同时保留了首轮正常功能下降的事实。
+
+旁路在200ms内向aBN1注入10个相隔20ms的事件。未训练与训练后的aBN1/aDN1/aDN2均为10/2/3，每个实现的全脑事件也一致。这表明该模型的相关神经通路仍可被强驱动，不支持“网络整体再也不能输出”的解释；但它既不是自然第二刺激，也不包含肌肉或身体反馈，不能说已排除全部生物疲劳。
+
+\subsection{这一级证据能推出什么，不能推出什么}
+$U=0$的工程对照曾与M0完整训练事件等价，排除了“换一种突触实现就自动改变基线”的错误；状态救援进一步把已构造M1中的可逆历史效应定位到资源部分。二者与真实动物选择性阻断某个分子机制不是同一件事。
+
+M1的耗竭规则本来就是人为加入的。看到它产生可逆递减并不是发现了未知生物机制；有价值的是阴性基线、严格输入配对和可被干预约束的解释。也不能把这组结果升级为全局最小性证明：神经元适应、抑制可塑性和其他慢状态仍是未排除的竞争方案。
+
+\takeaway{Q1说明局部资源机制在当前图谱与协议下足够；Q2说明历史效应可在该M1内部被资源干预定位，并且相关输出仍能被旁路驱动。既然关键记忆似乎很低维，下一步应问小模型能预测多少，而不是先认定全脑结构不可替代。}
+\FloatBarrier

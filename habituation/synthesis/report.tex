@@ -1,0 +1,52 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=none]{ctexart}
+\usepackage[margin=23mm,top=24mm,bottom=25mm,headheight=16pt]{geometry}
+\usepackage{fontspec}
+\setCJKmainfont{Noto Serif CJK SC}\setCJKsansfont{Noto Sans CJK SC}\setCJKmonofont{Noto Sans Mono CJK SC}
+\usepackage{amsmath,amssymb,booktabs,tabularx,longtable,array,graphicx,xcolor,pgfplots,tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\usepgfplotslibrary{fillbetween}\pgfplotsset{compat=1.18,table/col sep=comma}
+\usepackage{fancyhdr,lastpage,enumitem,caption,placeins}
+\usepackage[numbers,sort&compress]{natbib}\usepackage{xurl}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black,bookmarksnumbered=true]{hyperref}
+\definecolor{Blue}{HTML}{2166AC}\definecolor{Orange}{HTML}{C45A20}\definecolor{Green}{HTML}{23804A}
+\linespread{1.2}\setlength{\parskip}{.15em}\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.16}\renewcommand{\topfraction}{.9}\renewcommand{\textfraction}{.08}\renewcommand{\floatpagefraction}{.75}
+\setlist{leftmargin=2em,itemsep=3pt,topsep=4pt}\captionsetup{font=small,labelfont=bf,labelsep=quad}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\makeatletter\newcommand{\inputrows}[1]{\@@input #1 }\makeatother
+\newcommand{\takeaway}[1]{\par\medskip\noindent\textbf{本节推进的认识：}#1\par\medskip}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small 连接组约束的习惯化样响应}\fancyhead[R]{\small 综合研究报告}\fancyfoot[C]{\small\thepage\,/\,\pageref*{LastPage}}
+\hypersetup{pdftitle={连接组约束的果蝇习惯化样响应：机制、预测与特征边界},pdfauthor={作者与单位待确认},pdfsubject={三阶段计算研究的逻辑重构；不新增实验、不拼接历史PDF}}
+\title{\bfseries 连接组约束的果蝇习惯化样响应\\[.4em]\Large 从机制充分性、因果归因到前瞻预测与特征边界}
+\author{作者与单位待确认\\\small Digital Fly Brain 项目}
+\date{2026年9月19日\quad 综合研究报告}
+\begin{document}
+\maketitle\thispagestyle{fancy}
+\begin{center}\small 基于三个已完成研究阶段重新组织；不是旧PDF拼接。\\计算研究，尚未投稿或同行评审；不等于真实动物行为与生物机制确证。\end{center}
+\begin{abstract}
+连接组提供神经回路的结构，但不能自动保证模型具有跨刺激记忆。本研究以同一果蝇全脑连接图谱为约束，围绕JO-CE机械感觉输入和aBN1神经读出，依次检验动力学充分性、模型内记忆位置、低维预测能力以及经典习惯化特征。原固定连接模型M0在两种间隔下均无计数递减；只在4,764条兴奋性输出边上加入共享参数的短时突触抑制后，M1在短间隔产生90.22\%的早晚期递减及休息恢复。随后从相同训练末态分叉干预：aBN1初次均值8.2，训练后0.4；清除快状态仍为0.4，恢复资源则回到8.2，旁路驱动能力保留。为检验全脑复杂度的必要范围，两个各含两个拟合系数的低维代理先解释旧数据，再在102个新窗口上接受冻结预测检验；资源代理在3/3协议达到MAE不超过1.5脉冲的门槛，积累代理仅1/3，且局部非单调反弹暴露了二者的细节缺口。最后的特征补测支持部分恢复条件下的H3及人工输入率意义下的H5；H4(b)尚未稳健建立，H6与本次两个B的H8未见效应，H7缺少适用基线，H9/H10未完成检验。三个阶段共1006个正式观测窗口，既有审计回读1212个事件文件；这些不是独立动物样本。统一证据支持一个有限结论：局部可恢复资源足以产生部分习惯化样输出，并能被因果干预与前瞻预测约束，但不能据此唯一识别真实机制或证明完整连接结构不可替代。
+\end{abstract}
+\noindent\textbf{关键词：}连接组；习惯化；短时突触抑制；因果状态干预；低维代理；前瞻预测
+\clearpage
+\section*{阅读路线与结论层级}\addcontentsline{toc}{section}{阅读路线与结论层级}
+本文沿一条问题链展开，而不是按三次报告的文件顺序重复叙述。第\ref{sec:questions}节建立背景和统一方法，第\ref{sec:mechanism}节从正常传递推进到机制充分性与状态归因，第\ref{sec:prediction}节从旧曲线解释推进到冻结预测，第\ref{sec:hallmarks}节给出最新特征边界，第\ref{sec:discussion}节总结尚未解决的机制与结构问题。附录提供数量口径、设计时间线及复核入口。
+
+\begin{quote}\small
+\textbf{先区分四句话：}“模型能产生下降”是现象充分性；“改变资源会恢复输出”是特定模型内部的归因；“冻结模型能预测新条件”是有限范围的外推检验；“动物真正使用该机制”则需要独立生物实验。本文完成了前三类工作的一部分，没有完成第四类。
+\end{quote}
+
+\textbf{更新约定。}本稿是对已完成研究的事后综合，不声称整套研究从一开始就全部预先注册。旧报告的“尚未测试”按最新证据更新，失败、阴性、资格不足和探索性发现均保留。研究问题统一使用Q1--Q5；H1--H10只表示经典习惯化特征，不沿用旧阶段二的同名假设编号。三份历史PDF不修改。
+\tableofcontents
+\clearpage
+\input{sections/framework.tex}
+\input{sections/mechanism.tex}
+\input{sections/prediction.tex}
+\input{sections/hallmarks.tex}
+\input{sections/discussion.tex}
+\clearpage
+\phantomsection\addcontentsline{toc}{section}{参考文献}
+{\small\setlength{\bibsep}{3pt}\bibliographystyle{unsrtnat}\bibliography{references}}
+\clearpage\appendix
+\input{sections/appendix.tex}
+\end{document}

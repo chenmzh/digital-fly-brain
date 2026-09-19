@@ -1,0 +1,86 @@
+{
+  "formal_observation_windows": 1006,
+  "raw_event_files_previously_audited": 1212,
+  "distinct_seed_identifiers": [
+    1701,
+    1702,
+    1703,
+    1704,
+    1705,
+    2701,
+    2702,
+    2703,
+    3701,
+    3702,
+    3703
+  ],
+  "blank_windows": 6,
+  "independent_animals": 0,
+  "new_simulations": 0,
+  "new_fits": 0,
+  "resource_prospective_rmse": 1.035855739537207,
+  "accumulator_prospective_rmse": 3.0189329707810875,
+  "hallmark_groups": {
+    "H7:neu_JON_F": {
+      "tested_realizations": 3,
+      "eligible": 0,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H8:neu_JON_F": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H7:neu_JON_D_m": {
+      "tested_realizations": 3,
+      "eligible": 0,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H8:neu_JON_D_m": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H3": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H4b": {
+      "tested_realizations": 3,
+      "eligible": 1,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H5": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 2,
+      "consistent_support": true
+    },
+    "H6": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H3_partial": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 3,
+      "consistent_support": true
+    },
+    "H4b_qualified": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 0,
+      "consistent_support": false
+    }
+  },
+  "scope": "Retrospective synthesis of existing audited studies; counts are not independent samples."
+}

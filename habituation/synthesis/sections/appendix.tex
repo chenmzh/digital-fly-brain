@@ -1,0 +1,109 @@
+\section{实验账本与证据时间线}
+\label{app:ledger}
+\begin{table}[!htbp]\centering\small
+\caption{正式观测数量的统一口径。事件文件是保存单位，不是独立统计样本；后期还为静默段单独保存文件。}
+\begin{tabularx}{\linewidth}{p{3.5cm}rrY}\toprule
+资料来源 & 观测窗口 & 事件文件 & 重复与用途\\\midrule
+首轮M0/M1比较 & 280 & 60 & 1701--1705；20条序列，含恢复分支\\
+状态干预 & 90 & 90 & 复用1701--1705，不是五个新动物\\
+前瞻全脑检验 & 111 & 36 & 2701--2703；102个M1与9个M0初态\\
+经典特征补测 & 525 & 1026 & 3701--3703；含6个空白检查窗及限定扩展\\\midrule
+合计 & 1006 & 1212 & 一个连接组、11个不同种子标识\\\bottomrule
+\end{tabularx}\end{table}
+
+60个拟合窗口和80个旧跨协议窗口是首轮数据的子集，不再加到总数。102个冻结预测与102个M1观测逐一配对，也不是两批独立实验。工程pilot、失败/未完成片段以及更早糖/苦味基线均不计入上述正式习惯化账本。同一输入或前缀在不同反事实中复用，不使其成为更多独立生物重复。
+
+\begingroup\small
+\begin{longtable}{L{3.1cm}L{5.5cm}L{5.8cm}}
+\caption{按证据形成时序，而非按本文写作顺序分类。}\label{tab:chronology}\\
+\toprule 项目 & 实际先后与角色 & 本文如何使用\\\midrule\endfirsthead
+\toprule 项目 & 实际先后与角色 & 本文如何使用\\\midrule\endhead
+\bottomrule\endfoot
+首轮正式协议 & pilot后固定输入、参数与门槛，再完成M0/M1实验。 & 条件性充分性检验；本地预设，不是外部登记。\\
+损失恢复比例F & 首轮看过部分结果后增加，后续协议才提前规定双归一化。 & 不把首次探索性指标倒写为首轮正式终点。\\
+模型内状态干预 & 冻结方案后运行；第一次旁路恢复失败，修复并过工程门槛再完成。 & 因果归因限定在M1；失败不算科学阴性。\\
+代理60/80窗口 & 只用60拟合，但80的输出此前也已经见过。 & 分开拟合与回顾性检查，不称80窗口盲测。\\
+102窗口新预测 & 系数、候选选择与逐点预测先保存，新全脑结果后产生。 & 唯一标记为这一轮的前瞻预测；未重新拟合。\\
+局部反弹诊断 & 看到强刺激首例上升后再检查全部九序列。 & 明确事后探索，不参与原预测达标评分。\\
+H3部分恢复扩展 & 文献复核后、主多轮/恢复输出读取前固定；单轮A基线已见。 & 独立保留2s与10s判据，不声称全程盲法。\\
+H4(b)资格补测 & 看到原比较只有一例合格后，冻结一次0.75s/24次方案。 & 结果驱动设计的新实验，不放宽旧门槛、不继续搜索。\\
+本综合报告 & 所有上述结果均已存在，重新组织论证和图表。 & 零新增仿真、零新增拟合，不创造新预注册。\\
+\end{longtable}\endgroup
+
+\section{关键数值、状态与筛查细则}
+\subsection{首轮逐实现结果}
+\begin{table}[!htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\caption{首轮M1全部十条序列。M0在1701--1704恒为10，1705恒为9，故不重复列恒定行。单位除D外均为每300ms计数。}
+\begin{tabular}{rrrrrrrr}\toprule
+种子 & $T$(s) & $I$ & $E$ & $L$ & $D$(\%) & $P_2$ & $P_{10}$\\\midrule
+\inputrows{data/individual.tex}\bottomrule
+\end{tabular}\end{table}
+
+首轮五种命令注入数分别为2125、2080、2145、2171和2094；实际感觉脉冲分别为2100、2054、2109、2134和2065。二者不同，却各自逐次稳定。阶段二输入接口预测还核验了相邻时间格的重置碰撞：只有$\mathrm{tick}>\mathrm{last}+1$的命令事件被接受，感觉事件出现在$\mathrm{tick}+1$；该离散映射与旧输入及后续新数据逐事件一致。
+
+\subsection{恢复资源的解析含义，而非额外实验}
+无事件时，资源亏损按
+\begin{equation}
+x(t)=1-[1-x(t_0)]\exp[-(t-t_0)/\tau_{\rm rec}]
+\end{equation}
+衰减。固定$\tau_{\rm rec}=2$s后，等待2s或10s分别使资源亏损剩约37\%或0.67\%。这是方程定义的结果，不是独立生物发现。连续均值输入下的近似稳态为$1/(1+Uf\tau_{\rm rec})$；在150Hz时为0.25，但\emph{不是200ms间歇脉冲序列的实测平台}，更不是aBN1应按此比例线性变化的证明。
+
+\clearpage
+\subsection{各项操作性门槛}
+\begingroup\small
+\begin{longtable}{L{2.7cm}L{11.7cm}}
+\caption{主要筛查规则。全部是本项目的效应量约定，不替代经典特征的生物解释。}\\
+\toprule 项目 & 门槛与先决条件\\\midrule\endfirsthead
+\toprule 项目 & 门槛与先决条件\\\midrule\endhead\bottomrule\endfoot
+正常初态与递减 & 初次$\geq5$；$E>0$时定义D；递减$D\geq0.30$。\\
+平台 & 末两组三次均值差$\leq0.10E$。24次时使用19--21与22--24次。\\
+首轮恢复 & 递减已通过，10s探测$-L\geq0.20E$且探测$\geq0.80I$。\\
+状态干预 & 资源救援$\geq0.80I$；清快状态与sham差$\leq1$；双重恢复、旁路全事件等价。\\
+代理预测 & 每协议MAE$\leq1.5$，另检查两个判别条件的MAE/RMSE排序。\\
+H3，10s & 后续初次$\geq0.80I_1$；第三轮D较首轮增大$\geq0.10$，或相对本轮首次的连续三次半响应起点提前至少1次，且中间轮不反向。\\
+H3，2s & 后续初次高于前轮末期；前3次均值下降$\geq1$，或共同首轮基准下半响应起点提前至少1次，且中间轮不反向。\\
+H4(b)主F筛查 & 两组初次、递减、平台均合格；高频F50首个观测区间明确更早，且0.5/1/2s的F优势中位数$\geq0.10$。另列首次80\%区间，不隐藏分母差异。\\
+H5 & 两组初次可用；弱输入D比强输入高$\geq0.10$。\\
+H6 & 两长度均具资格；24次的半恢复区间更晚，或至少两个探测点比12次少$\geq1$脉冲。\\
+H7 & B初次$\geq5$且为A的0.5--2倍；A明显减弱而B保留至少80\%。本次B未过初态门槛。\\
+H8 & B至少100个非输入脉冲，B后空白aBN1为0；A相对等时休息的增益$\geq\max(2,0.20I)$，并报告未训练背景增益。\\
+跨实现一致性 & 补测至少2/3支持为描述性一致性筛查；不是$p$值或生物总体推断。\\
+\end{longtable}\endgroup
+
+\section{验证、工程偏离与计算资源}
+此前程序独立回读原始事件，核对源文件/数据哈希、完整条件覆盖、整数ID、时间网格、计数、资源边界与实际感觉输入。零U扩展与M0训练事件等价；训练末态重放、双重状态恢复和旁路对照均有全事件证据。H3连续2s恢复的首个探测还与独立2s分支一致，资格补测的初始事件也与原主程序一致。
+
+正式数据中的静默或窗口外未记录脉冲，不等于神经状态被程序重置。参数校验、分析输入覆盖和科学筛查失败亦不应混成一类：不完整数据应拒绝分析，科学阴性则应正常保留。
+
+需保留的工程事实包括：首轮1800s工具超时后按原参数分批补完，未完成片段排除；网格校验改为严格绝对容差，正式数值协议未变；阶段二新增旁路发生器恢复空快照时失败，显式清空未用事件后通过门槛；补测分析器曾缺少时区导入，修复后回读同一数据，不重跑神经实验。它们不被写成生物学发现或从记录中删除。
+
+首轮有效检查点/批次记录约51.1分钟，阶段二成功批次24.65分钟，补测56.58分钟，均包括加载、快照、计算和写盘。首轮中断未保存完整峰值，失败启动与排版开销也不完全计入，因此不将三者相加当作精确总成本或纯积分benchmark。
+
+仿真环境为Python3.10.21、Brian2 2.5.1、NumPy1.22.3、Pandas1.4.3、Cython0.29.33及PyArrow17.0.0，沿用原独立环境和单进程全脑执行。原PyArrow11退出故障属于已有工程记录；本次综合没有改变依赖。最近一次发布前10+6+16共32项实验相关单元测试通过。这不等于32项生物学结论通过。
+
+\section{数据入口、复现层级与读者自检}
+\begin{table}[!htbp]\centering\small
+\caption{关键证据入口，均相对于\texttt{habituation/}。原始事件目录未随GitHub发布；只下载仓库不能完成原始事件回读。}
+\begin{tabularx}{\linewidth}{p{3.0cm}Y}\toprule
+用途 & 文件或目录\\\midrule
+首轮数据与判据 & \path{analysis/metrics_by_seed.csv}、\path{analysis/report.json}、\path{protocols/main_v1.json}\\
+状态因果证据 & \path{stage2/analysis/cycle1/}\\
+冻结模型与预测 & \path{stage2/analysis/cycle2/frozen_models.json}、\path{stage2/analysis/cycle2/prospective_predictions.csv}\\
+新输出与误差 & \path{stage2/analysis/cycle3/forecast_outcomes.csv}、\path{scores_by_condition.csv}（同目录）\\
+最新特征判定 & \path{hallmarks/analysis/final/report.json}、\path{screens.csv}（同目录）\\
+资格补测来源 & \path{hallmarks/FREQUENCY_SUPPLEMENT.md}及\path{hallmarks/analysis/full/}保留的主分析\\
+本报告生成与验证 & \path{synthesis/prepare_data.py}、\path{synthesis/build.sh}、\path{synthesis/validate.py}\\\bottomrule
+\end{tabularx}\end{table}
+
+复现应分三层：\textbf{阅读层}直接查看公开PDF与汇总；\textbf{排版层}从固定汇总重建本报告，不需要启动神经仿真；\textbf{原始审计层}需要本机原事件或按各阶段README准备上游与环境、重新运行到新目录。重新拟合或重新运行形成的新文件不能冒充原冻结预测。上游固定提交为\path{91bdd1e7dcf193f3e7ca5a8933497fcef63b7960}。
+
+\begingroup\small
+\begin{description}[itemsep=2pt]
+\item[结构与状态] 连接组是约束，不是生前全部记忆；动态资源变化不等于优化长期权重。
+\item[数值与行为] 一个神经元的300/500ms计数不等于梳理动作，多个窗口不等于多只动物。
+\item[恢复与解除] 等待后的自发恢复、人工资源救援、第二刺激导致的解除属于不同实验。
+\item[平均与细节] 低MAE可以与局部反弹预测失败并存；均值恢复也不保证每个实现回到同一计数。
+\item[阴性与资格] 有效比较中没观察到效应，与没有初态响应、没有平台或没有前提，必须分开。
+\item[拟合与预测] 已见数据的检查不因没用于拟合就变成盲测；只有事前冻结的新输出比较才承担相应前瞻角色。
+\end{description}\endgroup
+\FloatBarrier

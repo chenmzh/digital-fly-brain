@@ -1,0 +1,83 @@
+\section{从旧曲线解释到新数据预测：复杂度到底增加了什么？}
+\label{sec:prediction}
+\subsection{Q3的起点：两种低维描述都可能看起来合理}
+若目标只有一个神经元的窗口计数，完整空间网络不一定是最经济的描述。这并不否定连接组的价值，而是要求它在特定预测目标上与更小的模型比较。这里引入的两种代理均模拟\emph{M1的输出}，不是在全脑图谱中新建两个生物机制。
+
+令$f$为输入接口转换后的平均感觉发放率，$u=f/150$，$P$为刺激宽度（秒），横线为刺激内状态平均，$[a]_+=\max(0,a)$。资源代理S和积累代理I在刺激期间分别满足
+\begin{align}
+\dot x&=(1-x)/\tau-Ufx,&\widehat R_S&=\frac{P}{0.2}[a_Su\bar x-b_S]_+,\label{eq:S}\\
+\dot z&=(u-z)/\tau,&\widehat R_I&=\frac{P}{0.2}[a_Iu-b_I\bar z]_+.\label{eq:I}
+\end{align}
+静默时S恢复至1，I衰减至0；均固定$\tau=2$s，S还固定$U=0.01$，各仅拟合两个非负读出系数。常输入下解析推进状态和脉冲内均值，先平均状态再经过非线性读出；不单独拟合空间连接、精确脉冲或刺激后的100ms尾部。
+
+按$P/0.2$缩放是测试前规定的跨宽度外推规则，不是看见400ms输出后再加上的修正。资源S拥有与M1生成机制相近的先验；积累I的时间尺度和读出也被限制，所以该比较不能当作对所有生物耗竭/抑制机制的公平穷尽裁决。
+
+\subsection{数据分区决定“预测”一词是否成立}
+只用旧M1短间隔的60个训练窗口拟合；其余旧M1的80个窗口作跨协议检查。这140个窗口已经包含在首轮280窗口中，不是新增样本。因为旧结果此前已经看过，80窗口只能称\textbf{回顾性检查}，不能称盲测。
+
+\begin{table}[!htbp]\centering\small
+\caption{两个代理对旧数据均能形成近似解释。RMSE单位为脉冲；两拟合系数并不意味着两个函数族的全部复杂度因素相同。}
+\begin{tabular}{lrrrr}\toprule
+代理 & $a$ & $b$ & 拟合RMSE & 回顾RMSE\\\midrule
+\inputrows{data/fit.tex}\bottomrule
+\end{tabular}\end{table}
+
+拟合误差更低可以支持某个描述更紧凑，却不能唯一识别生物机制。这里有一个特意保留的张力：Q2已经知道M1内资源状态起作用，Q3仍可用另一个状态规则拟合其输出。这说明\emph{内部因果可识别性与外部输出曲线可识别性并不相同}。只看一条输出曲线，比能在模型内直接干预状态掌握的信息少得多。
+
+\subsection{把代理分歧转化为新实验}
+候选面板在拟合规范中固定为100/150/200Hz、100/200/400ms宽度、刺激后静默200/800ms，共18组。以两代理预测分歧的RMSE排序，选择最大分歧方案，再选择频率或宽度不同的下一方案，另加原形状的新种子对照：
+
+\begin{table}[!htbp]\centering\small
+\caption{新全脑检验的三个协议。计数窗口随刺激宽度改变，不能把300ms与500ms的原始计数直接视为同一种发放率。}
+\begin{tabular}{lrrrrr}\toprule
+协议 & 命令Hz & $P$(ms) & $W$(ms) & $T$(s) & 重复数\\\midrule
+新种子对照 & 150 & 200 & 300 & 0.5 & 12\\
+200Hz长刺激 & 200 & 400 & 500 & 1.2 & 8\\
+150Hz长刺激 & 150 & 400 & 500 & 1.2 & 8\\\bottomrule
+\end{tabular}\end{table}
+
+采用2701--2703，训练后从同一末态分别等待1/5s探测。102个M1窗口的逐点预测、模型系数和来源哈希在任何新全脑输出产生前保存；另有9个M0初态单脉冲窗口作为正常传递对照，不参与模型选择或拟合，也不是完整M0重复实验。
+
+主动设计选择的是两代理\emph{分歧大的区域}，不是自然刺激分布的随机抽样。因此，它适合区分这两个固定描述，却不能给出所有可能刺激上的无偏平均排名。预设主门槛为每协议MAE不超过1.5脉冲，同时检查判别协议中的相对MAE/RMSE排序；相对胜出和绝对可用性必须分开。
+
+\subsection{前瞻结果：资源代理达标，但不是万能压缩}
+\begin{table}[!htbp]\centering\small
+\caption{新输出出现前已冻结的预测评分。三个输入实现按协议合并；通过仅指MAE$\leq1.5$，不是动物机制成立。}
+\label{tab:forecast}
+\begin{tabular}{llrrrr}\toprule
+协议 & 代理 & 窗口数 & MAE & RMSE & 达标\\\midrule
+\inputrows{data/forecasts.tex}\bottomrule
+\end{tabular}\end{table}
+
+S在3/3协议达到绝对门槛，I只在新种子对照达到，即1/3。在两个判别协议中，S的MAE和RMSE也均低于I。合并102窗口后的总体RMSE为1.036与3.019脉冲。没有用这些新输出重新拟合，也没有删除误差更大的种子。
+
+\newcommand{\ForecastPanel}[2]{\begin{tikzpicture}\begin{axis}[width=.94\linewidth,height=5cm,title={#2},xlabel={刺激序号},ylabel={响应计数},xmin=1,ymin=0,grid=major,grid style={black!10},tick label style={font=\small},title style={font=\small}]
+\addplot[black,thick,mark=*] table[x=trial,y=aBN1]{data/forecast_#1.csv};
+\addplot[Blue,thick,dashed,mark=triangle*] table[x=trial,y=resource]{data/forecast_#1.csv};
+\addplot[Orange,thick,dashdotted,mark=square*] table[x=trial,y=accumulator]{data/forecast_#1.csv};
+\end{axis}\end{tikzpicture}}
+\begin{figure}[!htbp]\centering
+\begin{minipage}{.48\linewidth}\ForecastPanel{1}{200Hz，400ms}\end{minipage}\hfill
+\begin{minipage}{.48\linewidth}\ForecastPanel{2}{150Hz，400ms}\end{minipage}
+\par\smallskip\small 黑色：全脑M1\quad\textcolor{Blue}{蓝色：资源S}\quad\textcolor{Orange}{橙色：积累I}
+\caption{两个判别协议的训练响应均值。图用于展示误差结构，表\ref{tab:forecast}评分还包括独立恢复探测；不能仅凭训练曲线的视觉贴合代替全部窗口评分。}
+\end{figure}
+
+这个结果支持的是\emph{具有机制先验的低维压缩在所测条件下能够外推}。它不证明全脑模型已被等价替代，也不意味着积累、抑制性可塑性或其他读出形式在生物上被否定。被测I只是一个固定时间常数、固定函数族、两系数拟合的具体代理。
+
+\subsection{反弹把“平均误差达标”与“完整解释动力学”分开}
+看到200Hz长刺激首个新实现的4$\to$6反弹后，额外检查全部九条新序列的最大相邻上升。这是事后探索性诊断，不是预设终点，不参与协议选择、模型重拟合或通过门槛。三个强刺激实现都有上升，其他两个协议没有；全部九条仍保留在原CSV中。
+
+\begin{table}[!htbp]\centering\small
+\caption{强刺激局部反弹。资源变化是M1刺激前边资源的均值变化，不是实际突触电流；只列强刺激三例，未用它们替代全样本评分。}
+\begin{tabular}{rrrrr}\toprule
+种子 & 刺激序号 & 实测计数 & 资源均值变化 & S预测变化\\\midrule
+\inputrows{data/rebounds.tex}\bottomrule
+\end{tabular}\end{table}
+
+两种当前代理在固定重复输入下只预测下降或平台，不能精确再现这些上升。资源均值继续下降时输出却增加，说明把整个网络读出视为平均资源的简单单调函数不充分。可能涉及输入时序、细胞间资源分配、兴奋/抑制相互作用或重置非线性；现有数据没有把因果原因定位到某个抑制回路。
+
+这里不能从两个相反方向过度推断：S平均误差达标不等于空间结构无用；S漏掉反弹也不等于必须使用完整真实图谱，一个更合适的小模型或小子图也可能做到。对全部细胞、精确脉冲和神经干预后果的预测仍未完成。
+
+\takeaway{Q3把研究从“已知曲线能解释”推进到“冻结预测接受新数据检验”。粗粒度计数可以被有效压缩，但细节存在失配。接下来不应在同一测试集上继续调参，而应沿另一条独立轴检查：这些神经现象究竟符合多少经典习惯化特征。}
+\FloatBarrier

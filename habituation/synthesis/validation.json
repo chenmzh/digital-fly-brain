@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "pages": 24,
+  "pdf_sha256": "7e6f8e3d32fd7ab1366b4100cfc3007b087c18d242d64a27eb32fbfb420f22fe",
+  "pdf_bytes": 455381,
+  "historical_files_unchanged": 167,
+  "source_files_verified": 29,
+  "formal_observation_windows": 1006,
+  "prior_raw_event_file_audits": 1212,
+  "distinct_seed_identifiers": 11,
+  "blank_windows": 6,
+  "new_simulations": 0,
+  "new_fits": 0,
+  "bookmark_count": 40,
+  "fonts_embedded": 24,
+  "no_missing_glyphs_overfull_boxes_unresolved_references_or_page_overflow": true,
+  "scientific_scope": "Synthesis and re-tabulation of previously audited evidence, not a new raw-event audit or biological validation."
+}

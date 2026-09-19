@@ -1,14 +1,18 @@
 # Habituation：连接组约束的记忆机制研究
 
-主问题：**固定连接的原始全脑模型能否产生跨刺激的反应递减？最少增加什么状态机制，才能产生递减与恢复？**
+研究主线：**固定连接能否产生递减 → 慢状态的充分性与因果定位 → 低维代理的冻结预测 → 经典特征与结构价值的边界。**
+
+**先读：[统一总报告（重构版，24页PDF）](report.pdf)** · [阅读摘要](REPORT.md) · [重构方案、源码与验证](synthesis/README.md)。统一背景和方法，更新全部三阶段的最新证据；不是PDF拼接，不新增仿真或拟合。
 
 首轮采用 **JO-CE 机械感觉 → 触角梳理相关回路**，不是糖刺激；aBN1 为主要神经读出。不把脑内输出下降直接称为真实动物的习惯化。
 
 ## 导航
 
-- **[最新：经典hallmarks补测](hallmarks/README.md)**：[525窗口结果与判定](hallmarks/REPORT.md)、[6页PDF](hallmarks/report.pdf)。部分恢复下H3有支持，H5方向一致；H4(b)未稳健建立，H6/H8未见效应，H7条件不足，H9/H10未测。
-- **[阶段二：三轮研究闭环](stage2/README.md)**：因果状态干预、低维代理及新输入前瞻验证；[新阶段报告PDF](stage2/report.pdf)、[文字结论](stage2/REPORT.md)。
-- **[首轮论文式详细报告（PDF）](paper/report.pdf)**：24 页，含入门解释、中英文摘要、图表、参考文献及复现附录；[LaTeX 源码与编译说明](paper/README.md)。
+以下为保留的分阶段资料，不替代上面的统一阅读入口：
+
+- **[分项：经典hallmarks补测](hallmarks/README.md)**：[525窗口结果与判定](hallmarks/REPORT.md)、[6页PDF](hallmarks/report.pdf)。部分恢复下H3有支持，H5方向一致；H4(b)未稳健建立，H6/H8未见效应，H7条件不足，H9/H10未测。
+- **[阶段二：三轮研究闭环](stage2/README.md)**：因果状态干预、低维代理及新输入前瞻验证；[阶段报告PDF（历史）](stage2/report.pdf)、[文字结论](stage2/REPORT.md)。
+- **[首轮论文式详细报告（历史PDF）](paper/report.pdf)**：24 页，含入门解释、中英文摘要、图表、参考文献及复现附录；[LaTeX 源码与编译说明](paper/README.md)。
 - [研究方案](RESEARCH_PLAN.md)：假设、模型、预先规定的判据、停止条件。
 - [文献与范式选择](LITERATURE.md)：经典 hallmarks、最小模型、抑制可塑性与候选感觉范式。
 - [实验日志](LAB_NOTES.md)：pilot、运行中断、接续与所有方案偏离。
