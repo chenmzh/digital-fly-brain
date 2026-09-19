@@ -1,0 +1,219 @@
+{
+  "cycle": 3,
+  "frozen_models_sha256": "f61ceca6f1995289177dde0a8dcde1ba87da5a7449aaa68f956936bb7f809cf8",
+  "frozen_predictions_sha256": "e085a13082299b5ce4e1702bfabf7ad90f8d0ac5e71d9ed6b598e8fed1b99482",
+  "provenance": [
+    {
+      "path": "habituation/stage2/results/cycle3_new_seed_control",
+      "manifest_sha256": "52e201a869a3e7e1806b05c5920eb03045b48a3dc675448992613f6ac1fda521",
+      "elapsed_seconds": 293.6714037549682,
+      "peak_rss_mib": 3444.9921875
+    },
+    {
+      "path": "habituation/stage2/results/cycle3_f200_p400_gap800",
+      "manifest_sha256": "45fa2430174cc48304e34fa6a959ab96af2a630e3747b684e5bca1c60bae118c",
+      "elapsed_seconds": 439.450794852979,
+      "peak_rss_mib": 3368.82421875
+    },
+    {
+      "path": "habituation/stage2/results/cycle3_f150_p400_gap800",
+      "manifest_sha256": "dc068dbdbedb5886f471d496b9752fcd7e96303b129b0761c97bce5d15790334",
+      "elapsed_seconds": 491.85146425804123,
+      "peak_rss_mib": 3361.0234375
+    }
+  ],
+  "audit": {
+    "prospective_std_windows": 102,
+    "supplementary_static_windows": 9,
+    "raw_event_files_verified": 36,
+    "input_interface_event_prediction_verified": true,
+    "forecast_precedes_all_simulation_runs": true,
+    "outside_response_window_spikes": 0
+  },
+  "scores": [
+    {
+      "condition": "f150_p400_gap800",
+      "surrogate": "resource",
+      "n": 30,
+      "mae": 0.9993619397816018,
+      "rmse": 1.2165859760404536,
+      "bias": -0.4263328184463378,
+      "mae_screen": true
+    },
+    {
+      "condition": "f150_p400_gap800",
+      "surrogate": "accumulator",
+      "n": 30,
+      "mae": 2.247115671599954,
+      "rmse": 2.660858645286056,
+      "bias": -2.0715568053234947,
+      "mae_screen": false
+    },
+    {
+      "condition": "f200_p400_gap800",
+      "surrogate": "resource",
+      "n": 30,
+      "mae": 1.03919068129212,
+      "rmse": 1.2165442149493486,
+      "bias": -0.2943635097019502,
+      "mae_screen": true
+    },
+    {
+      "condition": "f200_p400_gap800",
+      "surrogate": "accumulator",
+      "n": 30,
+      "mae": 4.303407872629426,
+      "rmse": 4.692796227599195,
+      "bias": -4.303407872629426,
+      "mae_screen": false
+    },
+    {
+      "condition": "new_seed_control",
+      "surrogate": "resource",
+      "n": 42,
+      "mae": 0.5908872831169708,
+      "rmse": 0.7010853425859286,
+      "bias": -0.32079600485240745,
+      "mae_screen": true
+    },
+    {
+      "condition": "new_seed_control",
+      "surrogate": "accumulator",
+      "n": 42,
+      "mae": 0.9470832703962851,
+      "rmse": 1.1603405273182996,
+      "bias": -0.7549926067496987,
+      "mae_screen": true
+    }
+  ],
+  "aggregate_scores": {
+    "resource": {
+      "n": 102,
+      "mae": 0.8428808286580829,
+      "rmse": 1.035855739537207,
+      "bias": -0.3440619808651937
+    },
+    "accumulator": {
+      "n": 102,
+      "mae": 2.3166000361129937,
+      "rmse": 3.0189329707810875,
+      "bias": -2.1858689198242645
+    }
+  },
+  "exploratory_rebounds": [
+    {
+      "condition": "f150_p400_gap800",
+      "seed": 2701,
+      "max_upward_step": 0.0,
+      "from_stimulus": 4,
+      "to_stimulus": 5,
+      "response_before": 2,
+      "response_after": 2,
+      "resource_state_change": -0.007636737543278649,
+      "resource_prediction_change": -0.19652700664026312,
+      "accumulator_prediction_change": 0.0
+    },
+    {
+      "condition": "f150_p400_gap800",
+      "seed": 2702,
+      "max_upward_step": 0.0,
+      "from_stimulus": 4,
+      "to_stimulus": 5,
+      "response_before": 4,
+      "response_after": 4,
+      "resource_state_change": -0.007652191727130608,
+      "resource_prediction_change": -0.1962186871423306,
+      "accumulator_prediction_change": 0.0
+    },
+    {
+      "condition": "f150_p400_gap800",
+      "seed": 2703,
+      "max_upward_step": 0.0,
+      "from_stimulus": 5,
+      "to_stimulus": 6,
+      "response_before": 1,
+      "response_after": 1,
+      "resource_state_change": -0.0024028875744299683,
+      "resource_prediction_change": -0.059945077204840214,
+      "accumulator_prediction_change": 0.0
+    },
+    {
+      "condition": "f200_p400_gap800",
+      "seed": 2701,
+      "max_upward_step": 2.0,
+      "from_stimulus": 5,
+      "to_stimulus": 6,
+      "response_before": 4,
+      "response_after": 6,
+      "resource_state_change": -0.001325765368004883,
+      "resource_prediction_change": -0.04145280008069907,
+      "accumulator_prediction_change": 0.0
+    },
+    {
+      "condition": "f200_p400_gap800",
+      "seed": 2702,
+      "max_upward_step": 1.0,
+      "from_stimulus": 6,
+      "to_stimulus": 7,
+      "response_before": 6,
+      "response_after": 7,
+      "resource_state_change": -0.0003375773851171937,
+      "resource_prediction_change": -0.010432439511551372,
+      "accumulator_prediction_change": 0.0
+    },
+    {
+      "condition": "f200_p400_gap800",
+      "seed": 2703,
+      "max_upward_step": 1.0,
+      "from_stimulus": 4,
+      "to_stimulus": 5,
+      "response_before": 4,
+      "response_after": 5,
+      "resource_state_change": -0.0052258812321838155,
+      "resource_prediction_change": -0.16280880188248403,
+      "accumulator_prediction_change": 0.0
+    },
+    {
+      "condition": "new_seed_control",
+      "seed": 2701,
+      "max_upward_step": 0.0,
+      "from_stimulus": 4,
+      "to_stimulus": 5,
+      "response_before": 1,
+      "response_after": 1,
+      "resource_state_change": -0.040383816449751975,
+      "resource_prediction_change": -0.612616773441925,
+      "accumulator_prediction_change": -1.1652387517676885
+    },
+    {
+      "condition": "new_seed_control",
+      "seed": 2702,
+      "max_upward_step": 0.0,
+      "from_stimulus": 5,
+      "to_stimulus": 6,
+      "response_before": 1,
+      "response_after": 1,
+      "resource_state_change": -0.02341929932602682,
+      "resource_prediction_change": -0.359006224638188,
+      "accumulator_prediction_change": -0.5491678217744038
+    },
+    {
+      "condition": "new_seed_control",
+      "seed": 2703,
+      "max_upward_step": 0.0,
+      "from_stimulus": 3,
+      "to_stimulus": 4,
+      "response_before": 2,
+      "response_after": 2,
+      "resource_state_change": -0.07001293542281095,
+      "resource_prediction_change": -1.058106433673862,
+      "accumulator_prediction_change": -1.5058061294408276
+    }
+  ],
+  "exploratory_note": "Post-hoc after first high-input trace; not used for fitting, design selection or primary pass/fail.",
+  "interpretation_limits": [
+    "No refitting on prospective data.",
+    "Active-design sample is not a random sample of all stimulation regimes.",
+    "Simulator surrogate comparison is not living-fly mechanism identification."
+  ]
+}

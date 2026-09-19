@@ -1,0 +1,5 @@
+model,interval_ms,n,h1_screen_count,h2_screen_count,plateau_screen_count,initial_mean,initial_min,initial_max,early_mean_mean,early_mean_min,early_mean_max,late_mean_mean,late_mean_min,late_mean_max,decrement_fraction_mean,decrement_fraction_min,decrement_fraction_max,probe_2000_mean,probe_2000_min,probe_2000_max,probe_10000_mean,probe_10000_min,probe_10000_max,probe_to_initial_2000_mean,probe_to_initial_2000_min,probe_to_initial_2000_max,probe_to_initial_10000_mean,probe_to_initial_10000_min,probe_to_initial_10000_max
+static,500.0,5,0,0,5,9.8,9.0,10.0,9.8,9.0,10.0,9.8,9.0,10.0,0.0,0.0,0.0,9.8,9.0,10.0,9.8,9.0,10.0,1.0,1.0,1.0,1.0,1.0,1.0
+static,2000.0,5,0,0,5,9.8,9.0,10.0,9.8,9.0,10.0,9.8,9.0,10.0,0.0,0.0,0.0,9.8,9.0,10.0,9.8,9.0,10.0,1.0,1.0,1.0,1.0,1.0,1.0
+std,500.0,5,5,5,5,8.2,8.0,9.0,5.4,4.666666666666667,6.0,0.5333333333333333,0.0,1.0,0.9022058823529411,0.8125,1.0,5.4,5.0,6.0,8.2,7.0,9.0,0.6583333333333333,0.625,0.75,1.0,0.875,1.125
+std,2000.0,5,0,0,4,8.2,8.0,9.0,7.333333333333334,6.666666666666667,8.0,6.6,6.0,7.0,0.09875494071146247,0.0,0.18181818181818177,6.4,6.0,7.0,8.2,7.0,9.0,0.7805555555555556,0.75,0.875,1.0,0.875,1.125

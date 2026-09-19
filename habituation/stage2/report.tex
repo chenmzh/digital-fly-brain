@@ -1,0 +1,289 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=none]{ctexart}
+\usepackage[margin=23mm,top=24mm,bottom=25mm,headheight=16pt]{geometry}
+\usepackage{fontspec}
+\setCJKmainfont{Noto Serif CJK SC}
+\setCJKsansfont{Noto Sans CJK SC}
+\setCJKmonofont{Noto Sans Mono CJK SC}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array,graphicx,xcolor,pgfplots}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.18,table/col sep=comma}
+\usepackage{fancyhdr,lastpage,enumitem,caption,placeins}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{xurl}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\definecolor{Blue}{HTML}{2166AC}
+\definecolor{Green}{HTML}{23804A}
+\definecolor{Orange}{HTML}{C45A20}
+\linespread{1.2}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{0.1em}
+\renewcommand{\arraystretch}{1.15}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.08}
+\renewcommand{\floatpagefraction}{0.8}
+\setlist{leftmargin=2em,itemsep=2pt,topsep=4pt}
+\captionsetup{font=small,labelfont=bf,labelsep=quad}
+\ctexset{section/format=\Large\bfseries,subsection/format=\large\bfseries}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Habituation：三轮闭环计算研究}
+\fancyhead[R]{\small 阶段二报告}
+\fancyfoot[C]{\small\thepage\,/\,\pageref*{LastPage}}
+\makeatletter\newcommand{\inputrows}[1]{\@@input #1 }\makeatother
+\input{report_data/numbers.tex}
+\hypersetup{pdftitle={从响应递减到前瞻预测：果蝇连接组习惯化样响应的三轮闭环研究},pdfauthor={作者与单位待确认},pdfsubject={因果状态干预、低维代理和冻结预测的新输入验证；计算先导研究}}
+\title{\bfseries 从响应递减到前瞻预测：\\果蝇连接组习惯化样响应的\\三轮闭环计算研究\\[0.5em]\large 因果状态干预、低维代理与主动设计的阶段结果}
+\author{作者与单位待确认\\\small Digital Fly Brain 项目}
+\date{2026 年 9 月 19 日\quad 阶段二}
+\begin{document}
+\maketitle\thispagestyle{fancy}
+\begin{center}\small 本地阶段报告；尚未投稿或同行评审。本文不替代真实果蝇的生物机制验证。\end{center}
+\begin{abstract}
+首轮实验表明，原始固定连接模型未产生跨次递减，而局部短时突触抑制模型 M1 可产生部分习惯化样神经响应。本阶段将这一现象推进为三个明确的研究闭环。第一轮通过独立状态干预定位模型内记忆：训练后 aBN1 平均计数为 0.4；恢复资源后为 8.2，与初次水平相同；只清除快状态仍为 0.4。训练前后的直接旁路驱动也产生相同全脑事件。第二轮使用旧数据拟合两种仅有两个读出参数的低维代理；二者都能接近旧下降曲线，揭示拟合歧义。第三轮在新全脑结果产生前冻结 102 个窗口的预测，依据模型分歧选择新刺激，再使用三个新种子验证。资源代理与积累代理的总体前瞻 RMSE 分别为 \ResourceProspectiveRMSE{} 和 \AccumulatorProspectiveRMSE{} 脉冲。\RelativeVerdict{}；\AbsoluteVerdict{}。本阶段新增 201 个正式响应窗口，并保留失败启动、修复和所有未达标条件。结果支持模型内慢状态归因与可证伪预测流程，但尚未证明完整行为习惯化、真实生物机制或全脑连接结构不可替代。
+
+\medskip\noindent\textbf{关键词：}习惯化；连接组；因果干预；代理模型；主动实验设计；前瞻预测
+\end{abstract}
+
+\section{问题从哪里来：不再满足于一条下降曲线}
+反复出现的无害刺激可能逐渐引起更弱反应，休息后又重新引起响应，这类现象与习惯化有关。但“输出越来越小”也可能来自输入变弱、感觉适应或输出失能，不能单凭下降就确定机制\citep{rankin2009}。
+
+首轮工作在 Shiu 等人的连接组约束模型\citep{shiu2024}中重复激活 70 个 JO-CE 机械感觉神经元。原始固定连接模型 M0 的 aBN1 输出恒定；加入局部短时突触抑制（STD）的 M1 在 0.5 s 间隔下出现强递减与恢复。STD 是可用资源暂时减少、休息后补充的效能变化，不等于把兴奋性连接变为抑制性连接。
+
+这个先导结果留下三个关键问题：
+\begin{enumerate}
+\item 响应历史究竟储存在资源变量中，还是只是膜电位等快状态的残留？
+\item 整个通路是否已经无法工作，还是仍保留被有效驱动的能力？
+\item 如果很小的状态模型也能解释这些曲线，完整连接组究竟增加了什么预测信息？
+\end{enumerate}
+
+本阶段不把“运行一个大模型”当成独立科学贡献，而是按\textbf{提出假设、冻结判据、实验与分析、修正假设、再预测}的流程推进。事先规定最多三个循环及约 60 分钟新增全脑计算预算，达到阶段证据后停止，不无限调参追求阳性。研究方案为本地预先规定，不是外部注册平台上的预注册。本文 H1--H4 是本阶段的研究假设编号，不是首轮报告中习惯化特征的编号。
+
+\paragraph{读者导读：什么是因果状态干预？}
+仅观察两个量一起变化，不能确定谁造成谁。本轮通过在同一个训练末态中只改变一个状态部分、保持其余部分不变，检查响应是否恢复。它类似程序中的受控反事实实验，回答的是\emph{这个模型内部}的因果问题，不是对活体进行了同样操作。
+
+\section{共同模型、数据与证据约定}
+所有全脑实验保留 127,400 个神经元及 14,687,178 条聚合有向边，不裁剪图谱。M1 仍只在 4,764 条 JO-CE 兴奋性输出边上使用资源状态：
+\begin{equation}
+\frac{\mathrm{d}x}{\mathrm{d}t}=\frac{1-x}{\tau},\qquad
+x^{+}=(1-U)x^{-},\qquad g_{\mathrm{post}}\leftarrow g_{\mathrm{post}}+wx^{-},
+\end{equation}
+其中传递先于资源消耗，$U=0.01$、$\tau=2$ s，沿用首轮设置，没有在本阶段重新拟合。解剖边、静态神经参数、0.1 ms 时间网格与原独立环境均保留。
+
+同一个输入实现被重复回放，因此可以将神经响应变化与命令输入的随机变化区分。每个事件经过阈值与重置调度后才成为实际感觉脉冲，不能直接假设注入与发放一对一。本阶段逐事件验证输入接口，并比较实际感觉脉冲的相对时间格。
+
+所有“重复”都来自一个固定图谱上的不同输入实现，不是多只果蝇。统计结果使用脉冲计数、误差和实现间范围，不进行生物总体显著性推断。主要读出仍是 aBN1；aDN1/aDN2 为相关下行读出，均不直接等于身体动作。
+
+\section{循环一：慢记忆的模型内因果归因}
+\subsection{实验前假设与判据}
+\textbf{H1：}M1 的跨次递减主要由资源状态维持，而非残留的快神经状态；训练后下游仍可被直接驱动。
+
+使用种子 1701--1705，每条序列输入 12 次 200 ms 刺激，等效输入率 150 Hz，起始间隔 0.5 s。每次响应窗口为 300 ms，最后窗口后再运行 200 ms，于 $t=6$ s 保存共同训练末态。从同一末态独立派生：
+\begin{enumerate}
+\item sham：不改任何状态，给相同 JO-CE 探测；
+\item 资源恢复：令选中边的 $x=1$，并同步更新事件驱动时间戳；
+\item 快状态恢复：将 $v,g,\mathrm{lastspike},\mathrm{not\_refractory}$ 恢复为构建时值，不改变 $x$；
+\item 两者恢复：同时进行上述两种操作；
+\item 旁路：不刺激 JO-CE，直接给 aBN1 在 200 ms 内注入 10 个间隔 20 ms 的事件，与独立初态的同样旁路刺激比较。
+\end{enumerate}
+
+资源恢复的 aBN1 应达到初次 M1 响应的至少 80\%；快状态恢复应与 sham 相差不超过 1 个脉冲。两者同时恢复时，全脑事件在相对时间格上应与初次刺激完全一致，此项是工程门槛。旁路比较主要看下行读出是否保留，不能将它直接称为自然刺激导致的去习惯化。
+
+\subsection{实际结果与假设修正}
+独立回读 90 个事件文件后，五个输入实现全部通过上述门槛。初次 aBN1 平均为 8.2，sham 为 0.4；只清快状态仍为 0.4，恢复资源则回到 8.2（图\ref{fig:causal}）。同时恢复两类状态的全脑事件与初次刺激完全一致。
+
+初态旁路与训练后旁路的 aBN1/aDN1/aDN2 计数均为 10/2/3，且每个实现的完整全脑相对事件表均一致。因此，本模型的相关神经输出通路并未失去被直接驱动的能力。但强旁路不是自然新刺激，不检验肌肉、身体或全部生物疲劳解释。这里恢复的是 M1 的初次水平，不是 M0 的更高初始水平。
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.87\linewidth,height=5.6cm,ymin=0,ymax=10.2,xmin=-0.4,xmax=4.4,
+ xtick={0,1,2,3,4},xticklabels={初次,训练后,清快状态,恢复资源,两者恢复},
+ ylabel={aBN1 脉冲数},tick label style={font=\small},grid=major,grid style={black!10}]
+\addplot[Blue,only marks,mark=*,mark size=3pt,error bars/.cd,y dir=both,y explicit]
+ table[x=x,y=mean,y error minus=minus,y error plus=plus]{report_data/causal.csv};
+\end{axis}
+\end{tikzpicture}
+\caption{循环一的受控状态干预。点为五个输入实现的均值，误差棒为最小值至最大值，不是置信区间。所有横轴条件使用相同 JO-CE 输入；另行进行的直接旁路刺激不混在这张图中。}
+\label{fig:causal}
+\end{figure}
+
+\textbf{闭环结论：}在这个已经包含 STD 的模型中，慢记忆可以归因于资源状态。由于资源机制本来就是设计的一部分，这不是发现了活体果蝇的新机制，而是对实现与解释的因果约束。由此提出新的 H2：粗粒度输出可能不需要整个全脑模型才能得到近似解释。
+
+\section{循环二：两种低维代理是否都能解释旧数据？}
+\subsection{为什么建立代理模型}
+最小动力学研究说明，少量内部状态和非线性读出就可能产生多项习惯化特征\citep{smart2024}。如果小模型也能解释现象，连接组模型必须靠更有区分力的预测证明其额外价值。生物实验中的抑制性可塑性确实有文献依据\citep{das2011,paranjpe2012,trisal2022}，但本轮没有把相应细胞机制移植进 JO-CE 全脑网络。
+
+下面两个模型都只是\textbf{全脑 M1 输出的低维代理}。积累代理并不代表新实现了一个得到生物验证的抑制回路，资源代理也不等于全脑 M1 本身。
+
+\subsection{方程、拟合范围与数据分区}
+令 $f$ 为经过输入接口转换后的平均感觉发放率，$u=f/150$，脉冲宽度为 $P$ 秒。资源代理 S 在刺激期间满足
+\begin{equation}
+\dot{x}=\frac{1-x}{\tau}-Ufx,
+\qquad \widehat R_S=\frac{P}{0.2}\,[a_Su\bar{x}-b_S]_+,
+\label{eq:surrogateS}
+\end{equation}
+积累代理 I 满足
+\begin{equation}
+\dot{z}=\frac{u-z}{\tau},
+\qquad \widehat R_I=\frac{P}{0.2}\,[a_Iu-b_I\bar{z}]_+.
+\label{eq:surrogateI}
+\end{equation}
+$[q]_+=\max(0,q)$，横线表示刺激期间的平均状态；静默期 S 恢复至 1，I 衰减至零。状态推进及脉冲内均值由对应常输入方程解析计算。两个模型均固定 $\tau=2$ s；S 的 $U=0.01$ 也固定，各自仅拟合非负读出系数 $a,b$。
+
+资源代理具有与生成数据的M1一致的机制先验，因此这是对模型压缩和外推的检验，不是在未知活体机制之间进行无先验的裁决。积累代理的恢复常数和读出形式也被固定；它失败不能否定所有积累模型，更不能否定生物抑制性可塑性。
+
+这是一种\emph{平均状态再读出}的近似：它忽略空间连接和脉冲细节，也没有单独建模刺激结束后的尾部响应。按 $P/0.2$ 缩放是在测试前规定的外推规则，不能在看到新数据后更换。
+
+仅使用旧 M1 的 0.5 s 间隔、五个种子的 60 个训练窗口拟合，采用固定多初值的有界最小二乘。其余旧 M1 数据共 80 个窗口用于跨协议检查。\textbf{这些旧结果此前已经看过，因此后者是回顾性检查，不是盲法前瞻验证。}
+
+\begin{table}[!htbp]
+\centering\small
+\caption{循环二的代理参数与旧数据误差。RMSE 单位为脉冲。两者均只有两个拟合系数，但函数族不同，不能将参数量相同理解为所有模型复杂度因素都已完全控制。}
+\begin{tabular}{lrrrr}
+\toprule
+代理 & $a$ & $b$ & 拟合 RMSE & 回顾性 RMSE\\\midrule
+\inputrows{report_data/fit_scores.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{这一轮改变了什么认识}
+两种代理都能接近旧输出，尽管其状态规则不同。因此，“能拟合一条下降曲线”不能可靠区分这两类描述。资源代理在旧数据上误差更低，但旧条件相对狭窄，不能据此宣称已经确定通用的读出形式。
+
+\textbf{修正后的 H3：}延长脉冲并改变强度后，两类状态规则会产生不同的末期和恢复预测；资源代理可能外推更好，但还必须检查它是否达到预设的绝对精度，而不只比另一个模型稍好。
+
+\section{循环三：先冻结预测，再用新全脑数据检验}
+\subsection{主动实验设计与前瞻性}
+预先规定候选面板：100/150/200 Hz，100/200/400 ms 刺激，刺激后静默间隔 200/800 ms，共 18 个组合；每条候选序列重复 8 次，响应窗口为刺激宽度加 100 ms。训练后独立等待 1 s 和 5 s 再探测。
+
+根据两个冻结代理在候选协议上的预测分歧 RMSE 排序，选择最大分歧方案及在频率或宽度上不同的下一个方案，另保留原形状的新种子对照：
+\begin{itemize}
+\item 对照：150 Hz、200 ms、起始间隔 0.5 s，12 次刺激；
+\item 判别 A：200 Hz、400 ms、起始间隔 1.2 s，8 次刺激；
+\item 判别 B：150 Hz、400 ms、起始间隔 1.2 s，8 次刺激。
+\end{itemize}
+
+新种子为 2701--2703，未参与拟合。102 个 M1 窗口的逐点预测、参数与文件 SHA-256 在任何新全脑条件运行前冻结。补充的九个 M0 初态窗口也在新数据产生前声明，用来衡量相同强度/宽度下的初始传递，不参与代理拟合或选择。
+
+评价指标为原始计数的 MAE、RMSE，并报告按协议的误差。预设实用精度门槛是\textbf{每个协议 MAE 不超过 1.5 个脉冲}。这一门槛不是生物学通用标准或显著性检验。新数据没有用于重新拟合。
+
+\subsection{神经响应与预测误差}
+\begin{table}[!htbp]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{新数据的响应范围。初次与末期均为跨三个输入实现的均值；末期先取各序列最后三次。对照窗口 300 ms，判别 A/B 窗口 500 ms，所以不同宽度下的计数不能直接当作同一个发放率。}
+\begin{tabular}{lrrrrrr}
+\toprule
+协议 & Hz & 宽度(ms) & $T$(s) & M0 初次 & M1 初次 & M1 末期\\\midrule
+\inputrows{report_data/baselines.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\input{figures.tex}
+
+\begin{table}[!htbp]
+\centering\small
+\caption{冻结预测的前瞻误差。每个协议的三个种子合并评分；“通过”仅表示达到 MAE$\leq1.5$ 的预设实用门槛，不表示生物机制被证明。}
+\begin{tabular}{llrrrr}
+\toprule
+协议 & 代理 & 窗口数 & MAE & RMSE & 通过\\\midrule
+\inputrows{report_data/forecast_scores.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+资源代理在 \ResourcePass/3 个协议达到绝对精度门槛，积累代理在 \AccumulatorPass/3 个协议达到门槛。\RelativeVerdict{}。\AbsoluteVerdict{}。必须将“相对误差更小”与“达到事先要求的精度”分开，不能在后者失败时只强调前者。
+
+\subsection{探索性发现：计数近似不等于精确动力学}
+看到强刺激第一个实现的局部反弹后，额外检查了所有九条新序列的相邻响应变化。这是\textbf{看数据后的诊断，不是预设的通过判据}，也没有用于重新拟合。200 Hz/400 ms 条件的三个实现均有局部上升（表\ref{tab:rebound}），而另外两个协议没有出现上升。
+
+\begin{table}[!htbp]
+\centering\small
+\caption{强刺激下的探索性局部反弹。每条序列列出最大的相邻上升。资源变化指完整M1在刺激前的边资源均值变化，不是代理状态或实际突触电流。三个实现来自同一个图谱，不能当作三只动物。}
+\label{tab:rebound}
+\begin{tabular}{rrrrr}
+\toprule
+种子 & 刺激序号 & 实测计数 & 资源均值变化 & S预测变化\\\midrule
+\inputrows{report_data/rebounds.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+相同固定输入下，这两个当前代理的状态及读出只允许下降或平台，不能精确表达上述局部上升。MAE达标与遗漏这些细节可以同时成立。资源均值下降而输出上升提示读出不是简单的单调平均映射，但不能由此直接锁定抑制回路：输入时序、空间网络、神经元重置非线性等都可能参与，也不排除更合适的小模型能解释它。
+
+\subsection{第三轮之后的新假设}
+\NextHypothesis{} 特别值得检验的是，在匹配平均输入率和初始状态的条件下，改变同步性或单细胞分配是否改变局部反弹。这一新H4实验尚未执行。
+
+无论代理在哪些条件上达标，都不能说整个连接组已被证明没有用：本轮只预测一个神经元的粗粒度计数，没有要求预测全部细胞、精确脉冲时序或细胞干预后果。反过来，代理失配也不能自动证明必须使用完整真实图谱；它可能来自平均化、读出函数、参数范围或某个很小的子回路。
+\FloatBarrier
+
+\section{审计、失败记录与研究可信度}
+\subsection{成功与失败如何分开记录}
+循环一首次启动在新增旁路刺激器恢复空快照时失败，出现事件数组长度不一致。该失败发生在完整重复刺激试验之前；原失败目录和入口快照保留。修复为每次恢复后显式清空未使用的旁路事件，再先通过单种子的全事件等价门槛，之后才完成五个种子。
+
+这个工程错误没有被写成 H1 的阴性结果，也没有通过覆盖文件而隐藏。正式计数不包含失败启动。完整模型、旧基线和第一版论文未被修改。
+
+\subsection{独立验证了什么}
+\begin{enumerate}
+\item 循环一：90 个窗口的全脑事件回读；神经读出和感觉计数重算；双重恢复与初次事件等价；旁路前后事件等价。
+\item 循环二：输入接口的离散转换与旧五个种子的感觉事件逐点一致；模型只使用规定的 60 个窗口拟合，参数和预测存档。
+\item 循环三：102 个前瞻 M1 窗口与九个 M0 基线，共 36 个原始事件文件；完整覆盖、时序、整数 ID、输入接口、资源边界与计数核对。
+\item 预测文件哈希与时间顺序验证，确保本次评分使用的是运行前版本；没有在新结果上重新训练。
+\end{enumerate}
+
+本阶段共新增 201 个正式窗口，回读 126 个事件文件。运行仍为单进程，采用原依赖环境。时间、内存和来源记录保存在逐批 manifest 中；它们不被当作纯积分 benchmark。数值预测精度也不等于真实动物实验精度。
+
+\section{阶段结论与下一阶段的验收条件}
+\subsection{目前可以形成的稳定结论}
+\begin{enumerate}
+\item 在现有 M1 和已测协议内，资源状态维持跨次记忆；快状态清除不能替代资源恢复。
+\item 直接旁路仍可驱动相关神经输出。这约束了“整体失能”的模型内解释，但不是完整行为疲劳检验。
+\item 两个低维代理都能接近旧曲线，说明旧数据对代理机制的区分力不足。
+\item 运行前冻结预测、再按分歧设计新刺激，可以将“解释已有曲线”推进为“接受新数据检验”。本轮的相对排序和绝对门槛结果均保留，而非只报告成功部分。
+\item 真实果蝇机制、刺激特异性、去习惯化、长期记忆和连接组独特贡献仍是未决问题。
+\end{enumerate}
+
+\subsection{下一轮必须先问清的三个问题}
+\textbf{（一）需要预测什么精度？}平均计数、单次脉冲时间和完整行为是不同任务。若目标只是一条 aBN1 曲线，小模型可能已足够；若目标是细胞干预和跨通路泛化，就需要更严格测试。
+
+\textbf{（二）怎样构造新的反例？}可在相同平均输入率下改变同步性、单细胞分配或时序，或在同一个资源末态进行旁路/干预。这样的协议可能区分“只有平均资源有用”与“空间和时间结构不可忽略”。所有新预测应在看新输出之前存档。
+
+\textbf{（三）何时才能讲真实机制？}需要具有对应时间尺度和刺激定义的活体数据，明确细胞类型、输入编码及行为读出。其他感觉系统中的抑制性可塑性证据不能直接视为 JO-CE 的结论。若要证明真实连接结构有用，还需与最小模型、局部图和匹配随机图在相同数据预算下比较。
+
+\paragraph{为什么在这里停止？}
+本阶段已经完成因果状态检验、低维比较和新输入的前瞻检验，足以形成一份有限但可审计的阶段报告。继续在同一测试集上修改模型直到误差变小，会破坏这一轮检验的意义。后续应另立新协议，而不是将本次结果包装成最终机制答案。
+
+\section*{数据、代码与责任声明}
+材料位于 \path{habituation/stage2/}。\path{PROTOCOL.md} 为阶段方案，\path{LOOP_LOG.md} 为闭环与偏离记录，\path{analysis/} 保存可版本管理的汇总，\path{results/} 保存本地原始事件及快照。\path{analysis/cycle2/prospective_predictions.csv} 为运行前预测，\path{analysis/cycle3/forecast_outcomes.csv} 为逐窗口预测--观测配对。
+
+本阶段进行了低维代理参数拟合，但没有拟合全脑生理参数。原始数据目前仍在本机；本报告没有被自动投稿、发布或推送到 GitHub。作者、单位、贡献、资助和利益冲突尚待人工确认。代码、分析辅助和报告使用 AI 编程助手完成，不取代责任作者的科学审阅。
+
+{\small\setlength{\bibsep}{3pt}\linespread{1.08}\selectfont
+\bibliographystyle{unsrtnat}\bibliography{references}}
+\clearpage
+\appendix
+\section{复现入口与三个循环的验收}
+从项目根目录运行。所有实验输出目录必须不存在；不要覆盖已有结果。
+\begin{quote}\footnotesize\ttfamily
+.venv/bin/python habituation/stage2/run\_cycle1.py\ \textbackslash\\
+\hspace*{1em}--output habituation/stage2/results/new\_cycle1
+\end{quote}
+重新拟合代理与冻结新预测使用 \path{surrogates.py --output NEW_DIR}。不要把重新拟合后的文件冒充本报告原先的冻结版本。按原冻结版本执行选定协议的入口是 \path{run_cycle3.py}，其 \texttt{--condition} 接受 \texttt{new\_seed\_control}、\texttt{f200\_p400\_gap800} 和 \texttt{f150\_p400\_gap800}。
+
+独立分析分别使用 \path{analyze_cycle1.py} 和 \path{analyze_cycle3.py}，输入对应完整批次、输出新目录。后者拒绝缺失、重复或预测哈希改变的配对。科学报告和图表由 \path{make_report.py} 从审计汇总生成，本文的图表不是手工重新输入的结果。
+
+\begin{table}[!htbp]
+\centering\small
+\caption{如何解读通过与未通过。工程检查、模型内假设和生物学证据属于不同层级。}
+\begin{tabularx}{\linewidth}{p{3cm}YY}
+\toprule
+层级 & 通过意味着什么 & 不意味着什么\\\midrule
+工程等价 & 状态恢复和事件读取符合实现预期 & 真实动物机制已确定\\
+资源救援 & 本 M1 的相应慢状态对响应重要 & 所有网络都必须使用 STD\\
+旧曲线拟合 & 小代理能解释已知数值模式 & 可以预测未见协议\\
+前瞻误差达标 & 在选定新条件下达到规定计数精度 & 对所有刺激与行为都有效\\
+代理相对胜出 & 在该设计中误差更小 & 已识别活体的生物机制\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{document}

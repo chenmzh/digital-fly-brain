@@ -1,0 +1,163 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=none]{ctexart}
+\usepackage[margin=23mm,headheight=16pt]{geometry}
+\usepackage{fontspec}
+\setCJKmainfont{Noto Serif CJK SC}\setCJKsansfont{Noto Sans CJK SC}\setCJKmonofont{Noto Sans Mono CJK SC}
+\usepackage{amsmath,booktabs,tabularx,array,xcolor,pgfplots,fancyhdr,lastpage,enumitem,caption,placeins}
+\pgfplotsset{compat=1.18,table/col sep=comma}
+\usepackage[numbers,sort&compress]{natbib}\usepackage{xurl}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!40!black,citecolor=blue!40!black,urlcolor=blue!40!black]{hyperref}
+\definecolor{Blue}{HTML}{2166AC}\definecolor{Orange}{HTML}{C45A20}\definecolor{Green}{HTML}{23804A}
+\linespread{1.18}\setlength{\emergencystretch}{2em}\renewcommand{\arraystretch}{1.15}
+\setlist{leftmargin=2em,itemsep=2pt}\captionsetup{font=small,labelfont=bf,labelsep=quad}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Habituation hallmarks 补测}\fancyhead[R]{\small 完整M1的限定检验}\fancyfoot[C]{\small\thepage/\pageref*{LastPage}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\makeatletter\newcommand{\inputrows}[1]{\@@input #1 }\makeatother
+\input{report_data/numbers.tex}
+\title{\bfseries 经典习惯化特征的补充检验\\\large 单时间尺度STD全脑模型的能力、限制与指标边界}
+\author{作者与单位待确认\\\small Digital Fly Brain 项目}
+\date{2026年9月19日\quad 本地计算研究报告}
+\begin{document}
+\maketitle
+\begin{abstract}
+本研究在已有果蝇连接组M1模型中补测具备实施条件的经典习惯化特征，不改变生理参数或人工恢复资源。使用三个新输入实现，对多轮训练、频率依赖恢复、强度依赖、平台后继续训练和第二刺激作用进行独立控制。共记录\Windows{}个300ms观测窗口，回读\EventFiles{}个全脑事件文件。10秒轮间恢复条件有\FullPass/3个实现达到原较严格的增强门槛；另行预先规定的2秒部分恢复条件有\PartialPass/3个实现达到补充增强筛查。强度依赖和平台后继续训练分别有\StrengthPass/3、\AccumulationPass/3个实现达到相应效应量门槛。两个第二刺激虽有效激活网络，均未使原刺激响应超过等时休息；其自身aBN1基线不足，故不能用于证明刺激特异性。结果必须按特征、协议和读出分别解释，不将神经代理等同于完整动物行为，也不把未满足前提写成阴性。
+\end{abstract}
+
+\section{研究目的与固定边界}
+经典习惯化包括响应递减、自发恢复及多项附加特征\citep{rankin2009}。这些特征不是所有系统都必须同时满足的清单；反过来，只看到下降曲线也不足以确定学习机制。
+
+前两阶段已在JO-CE机械感觉输入到aBN1读出上观察到递减、恢复和重复间隔依赖。本轮沿用M1：127,400个神经元、14,687,178条原始聚合边，只有4,764条JO-CE兴奋性输出边使用短时突触抑制。资源每次传递后乘以$1-U$，静默时按2秒时间常数恢复，$U=0.01$。未拟合或扫描这两个参数。原始固定连接模型M0、上游代码和旧报告保留不变。
+
+新种子3701--3703产生三个输入实现，不是三只动物。每个实现内重复同一实际感觉事件序列。基准输入为150Hz、200ms，读出窗口300ms，起始间隔0.5秒。所有实验保留全脑网络并顺序执行；成功批次记录合计约\WallMinutes{}分钟，包含建模、计算和写盘，不是纯积分性能。
+
+\paragraph{编号与判据。}
+本文H1--H10指经典特征编号。aBN1初次至少5个脉冲为正常传递筛查；递减量$D=1-L/E$，其中$E$为前3次均值、$L$为末3次均值，$D\geq0.30$为递减门槛。平台要求相邻两组三次响应的均值差不超过$0.10E$。这些数值是本项目的先导研究约定，不是文献要求的普适阈值或统计显著性检验。低计数区允许存在小幅非单调变化，所以“通过D筛查”也不等价于严格逐次不增的数学版本。方案仅在本地预先冻结，并未注册于第三方平台。
+
+\section{H3：多轮增强与恢复程度}
+\subsection{保留原方案，同时检验文献允许的部分恢复}
+主方案为三轮、每轮12次刺激，轮间从最后读出窗口结束起休息10秒；整个多轮序列不恢复初态或资源。要求后续首次响应至少恢复到首轮的80\%，再比较D和连续三个响应低于本轮首次一半的起始刺激序号。结果\FullPass/3达到该较严格门槛。
+
+但文献的数学表述允许\emph{部分恢复}之后响应进一步降低\citep{smart2024}。因此，仅凭充分恢复条件的结果不能排除所有H3。我们在主实验多轮与恢复结果读取前冻结一个限定补充：同样三轮，但轮间只休息2秒。当时已看到第二刺激实验的单轮A基线；这不是所有数据都不可见的外部预注册。
+
+补充筛查要求后续首次确实高于前轮末期，证明发生了自发恢复；不要求恢复至80\%。再检验前3次响应是否减少至少1脉冲，或相对共同首轮首次的半响应到达是否提前至少一次。2秒条件\PartialPass/3达到该补充筛查。原10秒方案和结果没有被删除或替换。
+
+\newcommand{\CyclePanel}[2]{\begin{tikzpicture}\begin{axis}[width=\linewidth,height=5cm,title={#2},xlabel={本轮刺激序号},ylabel={aBN1脉冲数},xmin=1,xmax=12,ymin=0,xtick={1,4,8,12},grid=major,grid style={black!10},tick label style={font=\small},title style={font=\small}]
+\addplot[Blue,thick,mark=*] table[x=trial,y=mean]{report_data/cycles_#1s_1.csv};
+\addplot[Orange,thick,dashed,mark=triangle*] table[x=trial,y=mean]{report_data/cycles_#1s_2.csv};
+\addplot[Green,thick,dashdotted,mark=square*] table[x=trial,y=mean]{report_data/cycles_#1s_3.csv};
+\end{axis}\end{tikzpicture}}
+\begin{figure}[!htbp]\centering
+\begin{minipage}{.48\linewidth}\CyclePanel{10}{轮间休息10秒}\end{minipage}\hfill
+\begin{minipage}{.48\linewidth}\CyclePanel{2}{轮间休息2秒}\end{minipage}
+\par\smallskip\small\textcolor{Blue}{圆点：第1轮}\quad\textcolor{Orange}{三角：第2轮}\quad\textcolor{Green}{方块：第3轮}
+\caption{三轮训练的均值响应。重合的曲线可能遮挡彼此；逐种子完整数据另存。轮间只有等待，没有状态重置。共同基准下更早进入低响应区间，与相对每轮自身起点的下降速度改变不是同一概念。}
+\end{figure}
+
+\subsection{不能将短期残余状态称为元可塑性}
+部分恢复后，资源仍未回到初态，下一轮较低的起始响应和较早的低响应都可能由同一残余状态解释。这里没有改变学习率、恢复常数或长期连接权重。即使符合部分H3表述，也不能据此宣称形成新的长期记忆或学习能力增强。完整的逐轮初次、前3次、D及两种半响应指标见配套CSV与文字报告。
+
+\section{H4(b)：更频繁训练是否恢复更快？}
+比较相同150Hz输入、相同12次刺激，仅改变起始间隔$T=0.5/1$秒。两组均需达到正常初次、递减和平台门槛。从各自同一训练末态独立等待0.2、0.5、1、2、5秒，再给同样A探测，前一探测不影响下一分支。
+
+主操作性指标为已损失响应的恢复比例：
+\begin{equation}
+F(t)=\frac{R_{\mathrm{probe}}(t)-L}{I-L},
+\end{equation}
+其中$I$是首次响应。保留负值和过冲，不截断。同时，在主实验启动前补充规定报告$R_{\mathrm{probe}}/I$达到80\%的时间。两者回答不同问题：前者问“损失的部分恢复了多少”，后者问“离原始水平还有多远”。
+
+\begin{table}[!htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\caption{恢复阈值的采样区间。高频/低频指刺激重复率，不是脉冲内输入率。相同区间不能推出精确的时间差；这些不是拟合时间常数或置信区间。}
+\begin{tabular}{rllll}\toprule
+种子 & 高频F50 & 低频F50 & 高频首次80\% & 低频首次80\%\\\midrule
+\inputrows{report_data/recovery_intervals.tex}\bottomrule
+\end{tabular}\end{table}
+
+\newcommand{\RecoveryPanel}[3]{\begin{tikzpicture}\begin{axis}[width=.94\linewidth,height=5cm,title={#3},xlabel={休息时间（秒）},ylabel={#2},xmin=0,xmax=5.2,xtick={0,1,2,5},grid=major,grid style={black!10},tick label style={font=\small},title style={font=\small}]
+\addplot[Blue,thick,mark=*] table[x=rest_s,y=#1]{report_data/recovery_fast12.csv};
+\addplot[Orange,thick,dashed,mark=triangle*] table[x=rest_s,y=#1]{report_data/recovery_slow12.csv};
+\end{axis}\end{tikzpicture}}
+\begin{figure}[!htbp]\centering
+\begin{minipage}{.48\linewidth}\RecoveryPanel{relative_initial}{探测/首次}{离原始响应的距离}\end{minipage}\hfill
+\begin{minipage}{.48\linewidth}\RecoveryPanel{F}{已损失响应恢复比例}{相对于各自损失的恢复}\end{minipage}
+\par\smallskip\small\textcolor{Blue}{圆点：$T=0.5$秒}\quad\textcolor{Orange}{三角：$T=1$秒}
+\caption{两种归一化展示的是相同原始探测数据，但分母不同。曲线为逐实现计算后取均值；连线只是连接采样点，不是拟合曲线。休息从最后300ms响应窗口结束计时，距实际200ms刺激结束另多100ms。}
+\end{figure}
+
+时间定义还有一项限制：对$T=1$秒组，0.2/0.5秒等待加300ms读出窗后，探测起始间隔只有0.5/0.8秒，比原训练间隔还短。这两个点是短间隔探测，不能单独当作漏掉刺激后的恢复；负F不等于发现了新的长期抑制。靠近初次水平的恢复应看较晚时间点。
+
+F50的预设筛查有\FrequencyPass/3个实现支持。即便某些F值显示高频组相对恢复更多，也不能忽略末态损失深度或将未分辨的首次80\%时间写成更快。文献中以回到接近初始响应为准的H4(b)形式化\citep{smart2024}，也不等价于这里任一孤立F值。我们不因突触恢复常数都是2秒，就直接假定神经输出恢复速度相同或不同。
+
+\subsection{资格不足后的限定补测}
+原12次比较只有3702同时满足两组全部门槛：3701慢组平台差为0.667，大于阈值0.600；3703慢组D为29.4\%，略低于30\%。没有放宽阈值或将这两例当作H4(b)阴性。
+
+在看过这些结果后，我们另行冻结一次补充：较低频组改为$T=0.75$秒、24次，与已有$T=0.5$秒、24次匹配，探测0.5/1/2/5秒。这样所有探测起始间隔均晚于正常训练节律；所有神经参数、种子和资格门槛不变。此组完成后停止扩大，不继续筛选时距。
+
+新比较\QualifiedEligible/3满足原递减及平台条件；F50操作性筛查\QualifiedPass/3支持。按恢复到首次80\%计算，高频明确较早\AbsoluteFast/3，低频明确较早\AbsoluteSlow/3，其余未分辨。这些结果尚不足以稳健建立H4(b)，但比忽略原比较资格问题更可解释。
+
+\begin{table}[!htbp]\centering\small\setlength{\tabcolsep}{4pt}
+\caption{24次训练资格补测。高频为$T=0.5$秒，较低频为$T=0.75$秒；大于5秒表示最后一个采样点仍未达阈，不是具体恢复时间。}
+\begin{tabular}{rllll}\toprule
+种子 & 高频F50 & 较低频F50 & 高频首次80\% & 较低频首次80\%\\\midrule
+\inputrows{report_data/qualified_intervals.tex}\bottomrule
+\end{tabular}\end{table}
+
+本补充有明确的结果驱动设计背景，不能写成最初主方案的一部分。原主结果与审计保留在\path{analysis/full/}，含补充的最终审计另存\path{analysis/final/}。短间隔恢复的F值、回到近初始水平以及真正的恢复时间常数不能混用；相同采样区间也不能称为统计等价。
+
+\section{H5：较弱输入是否产生更强递减？}
+重复间隔均为0.5秒、宽度均为200ms、次数均为12，仅比较脉冲内150/200Hz感觉输入率。初始aBN1均需至少5脉冲；弱输入的D比强输入大至少0.10为本轮预设门槛。
+
+\begin{table}[!htbp]\centering\small
+\caption{强度比较与频率对照。D以百分数给出；先对每个实现计算，而不是先混合均值。最后一列只作为刺激间隔对照，不参与强度比较。}
+\begin{tabular}{rrrrrr}\toprule
+种子 & 弱输入首次 & 强输入首次 & 弱输入D & 强输入D & $T=1$s的D\\\midrule
+\inputrows{report_data/strength.tex}\bottomrule
+\end{tabular}\end{table}
+
+\StrengthPass/3个实现达到H5操作性门槛。这里的强度是人工感觉输入率，并未标定成真实机械力或触角位移。不要把“每秒重复多少次刺激”与“单次刺激内感觉神经发放率”混为同一个频率变量。
+
+\section{H6：平台之后继续训练的影响}
+保存第12次训练末态，然后沿同一轨迹再训练12次。在第12次与第24次末态分别进行五点独立恢复探测。两段末期均须达到平台标准；比较恢复时间区间和原始探测计数，而不是只看资源变量是否仍在改变。
+
+本轮\AccumulationPass/3个实现达到预设的额外训练影响门槛。阴性只表示本次数量、强度与检测分辨率下未见该影响，不证明任何条件下都没有潜隐积累。尤其需要区分“神经输出达到近似平台”与“所有隐藏状态已经严格达到不变点”。逐实现的五点计数差保存在文字报告和筛查CSV。
+
+\begin{figure}[!htbp]\centering
+\begin{tikzpicture}\begin{axis}[width=.72\linewidth,height=4.8cm,xlabel={休息时间（秒）},ylabel={aBN1脉冲数},xmin=0,xmax=5.2,ymin=0,grid=major,grid style={black!10},legend style={font=\small,at={(.02,.98)},anchor=north west}]
+\addplot[Blue,thick,mark=*] table[x=rest_s,y=aBN1]{report_data/recovery_fast12.csv};\addlegendentry{12次训练}
+\addplot[Orange,thick,dashed,mark=triangle*] table[x=rest_s,y=aBN1]{report_data/recovery_fast24.csv};\addlegendentry{24次训练}
+\end{axis}\end{tikzpicture}
+\caption{平台后继续训练的恢复比较。图示三个实现的均值；是否达到门槛按逐实现数据判断。曲线重合本身也应保留，不通过重新选择条件制造差异。}
+\end{figure}
+
+\section{H7/H8/H9：第二刺激的有效性和解除作用}
+B候选固定为上游Notebook列出的JO-F群体及\texttt{neu\_JON\_D\_m}群体，均150Hz、200ms；没有为追求阳性升高强度或任意挑选细胞。STD仍只在JO-CE输出，B接口在所有相应对照中相同。
+
+\textbf{H7的前提失败。} 两个B的未训练aBN1均为0，未达到与A可比较的基线门槛。因此不能把B一贯零响应当作刺激特异性，也不能把它写成H7阴性。
+
+\textbf{H8可以另行测试。} 去习惯化要求B之后\emph{原刺激A}的响应恢复，并不要求B自身引起aBN1响应。两个B均超过100个非输入神经元脉冲，且B之后空白检查窗的aBN1为0，因而满足本轮B有效性及残留输出门槛。
+
+A训练后，比较B$\to$A与等时休息$\to$A，并用未训练B$\to$A控制一般增益。B从末次A响应窗口结束后200ms开始，A在B读出结束再等200ms后探测；所有休息对照在相同A时刻读出。
+
+\begin{table}[!htbp]\centering\small
+\caption{B的网络激活与原A响应。B本身的aBN1均为0，但非输入神经元存在明确活动；增益为插入B后的A减等时休息后的A。}
+\begin{tabular}{rlrrrr}\toprule
+种子 & B & 非输入脉冲 & 休息后A & B后A & 增益\\\midrule
+\inputrows{report_data/B_controls.tex}\bottomrule
+\end{tabular}\end{table}
+
+两个B、三个实现的增益均为0；未训练背景的增益也均为0。这些B、强度和时序\textbf{未诱发H8}，但不能推广为所有刺激都不能解除习惯化。人工将资源置1并不是本次B刺激，也不能替代去习惯化实验。
+
+H9要求先有可靠解除效应，才能测试反复解除是否减弱。本轮没有达到这一前提，因此没有继续重复无效解除并冒充H9检验。
+\FloatBarrier
+
+\section{结论、不可检验项和复现}
+本轮将多个此前“未测”项目推进为有原始事件和对照的数据，但不是全部hallmarks的通过证明。应区分：支持某个操作性筛查、未观察到效应、采样未分辨、以及前提不满足。H3还必须区分部分恢复下的历史效应与充分恢复后的增强；H4(b)必须区别恢复分母和恢复到初始水平。
+
+H10未测试。当前缺少长期可塑性与对应长期生物测定标定，不能把秒级恢复改名为长期习惯化，也不能人为延长tau后宣称复现长期记忆。
+
+所有\Windows{}个观测窗口中含6个空白检查窗，其余是刺激读出。全部静默间隔同样保存事件，独立核对整数ID、时间格、实际感觉输入、刺激时序、资源边界和完整覆盖。三个输入实现来自一个图谱，不作动物总体显著性推断。通路有效不等于已证明完整梳理行为，未通过本轮协议也不等于某一机制在全部参数范围内不可能产生相应特征。
+
+方案、扩展理由、失败记录及全部证据在\path{habituation/hallmarks/}。\path{REPORT.md}包含逐实现数字，\path{analysis/final/report.json}为最终审计，\path{screens.csv}记录分项门槛，\path{recovery_profiles.csv}保存恢复原始计数及两类归一化。完整源代码、命令与数据格式见该目录\path{README.md}。
+
+所有新实验均在本地执行，原始数据未自动发布，未提交或推送GitHub。作者、单位与责任声明待人工确认；本稿不是已投稿或同行评审的论文。编程与分析由AI助手辅助，不代替责任作者审阅。
+
+{\small\bibliographystyle{unsrtnat}\bibliography{references}}
+\end{document}

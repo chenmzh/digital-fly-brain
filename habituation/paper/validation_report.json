@@ -1,0 +1,20 @@
+{
+  "pdf": "report.pdf",
+  "pdf_sha256": "d681e224776704b315df45b2419c7c97a660f037840cece9708565d93e81b91a",
+  "pages": 24,
+  "cjk_character_count_in_extracted_text": 14092,
+  "figures": 4,
+  "tables": 9,
+  "references": 10,
+  "checks": {
+    "source_and_data_hashes": true,
+    "all_fonts_embedded": true,
+    "text_extraction_and_key_numbers": true,
+    "printed_protocol_hash": true,
+    "no_overfull_boxes_or_missing_characters": true,
+    "no_unresolved_references": true,
+    "no_annotation_errors": true
+  },
+  "known_portability_note": "Tectonic reports system Noto CJK font paths; same named fonts are required on a new machine. Byte-identical PDFs are not promised.",
+  "visual_review": "Not automated by this script. Inspect rendered figures and pages separately."
+}

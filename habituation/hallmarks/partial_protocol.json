@@ -1,0 +1,41 @@
+{
+  "id": "hallmarks-h3-partial-v1",
+  "seeds": [
+    3701,
+    3702,
+    3703
+  ],
+  "dt_ms": 0.1,
+  "pulse_ms": 200.0,
+  "response_ms": 300.0,
+  "reference_hz": 150.0,
+  "strong_hz": 200.0,
+  "fast_interval_ms": 500.0,
+  "slow_interval_ms": 1000.0,
+  "n_train": 12,
+  "n_extended": 24,
+  "n_cycles": 3,
+  "between_cycles_ms": 2000.0,
+  "recovery_ms": [
+    200.0,
+    500.0,
+    1000.0,
+    2000.0,
+    5000.0
+  ],
+  "B_populations": [
+    "neu_JON_F",
+    "neu_JON_D_m"
+  ],
+  "B_wait_before_ms": 200.0,
+  "B_wait_after_ms": 200.0,
+  "minimum_initial": 5,
+  "decrement_threshold": 0.3,
+  "plateau_tolerance": 0.1,
+  "enhancement_delta": 0.1,
+  "recovery_fraction_difference": 0.1,
+  "B_min_noninput_spikes": 100,
+  "minimum_dishabituation_gain": 2,
+  "consistent_seeds": 2,
+  "wall_budget_minutes": 90
+}

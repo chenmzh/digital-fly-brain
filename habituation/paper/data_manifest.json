@@ -1,0 +1,28 @@
+{
+  "scope": "Derived manuscript material only; no new simulations or fitted results.",
+  "source_sha256": {
+    "analysis/responses.csv": "6447ee85da53393fdb0a52a985c98f2bfed2134f4629106652e21a2be39feebf",
+    "analysis/metrics_by_seed.csv": "3138991d4a3e1fcd543f8579a99e0ce6dcba46c956ebec4bec8377ffac4bcc6d",
+    "analysis/report.json": "efe613cbbf22010f05d9de7fbf2e38f9137461a83a5e16a3351a8d22cc59d39e",
+    "protocols/main_v1.json": "0c7477c0e5debaaf0a764ac6000285cb7f6cbc8ef9e9fc468e7d889b3d8619f5",
+    "paper/prepare_data.py": "3680912cf635f948b49a2083a6fdf7866b5752a7ce33c69a44c2d2a3df11cc6d"
+  },
+  "response_windows": 280,
+  "sequences": 20,
+  "checks": "Every main-table value independently recalculated from per-seed metrics and checked against report.json.",
+  "generated_sha256": {
+    "downstream_rows.tex": "e2101d2f66bdd4407c4bf5fb560efa89d60ab5df792e26e5cc949a60b30f20e8",
+    "individual_rows.tex": "739155adc51c3bb35728292fe0ad1af02f8f8c2f2e69c4774621b2ace5e9186b",
+    "input_rows.tex": "94e4407d421a6bbc933eecbf83644c0959f076b7a9a72a0aac9dfad694308442",
+    "main_rows.tex": "28f8e74551f4e0617f9e9739ae9e1bbaab9a55cdfbeb4fa61b699ff643233561",
+    "paired_decrement.csv": "1dae46826fc050d5f49f32ca299d579573dfa07e4500cc19212491f19bcc45b9",
+    "recovery_static_2000.csv": "d2c8d8a433d341740eb858f5b6edf1772a2c204efdf2e212104061bae6f510d6",
+    "recovery_static_500.csv": "d2c8d8a433d341740eb858f5b6edf1772a2c204efdf2e212104061bae6f510d6",
+    "recovery_std_2000.csv": "83f3987ff96d3a86c72f53991c28fb33f9be72060fd7b86d14102d9b8cbaa8ca",
+    "recovery_std_500.csv": "a976c676f2b1b0c047cc188877b6828146802e6271a354e5e18f8cc07923cec8",
+    "train_static_2000.csv": "0250aff27f6ae3b716d1d7878cdb5a42856d7e2f3a1a5167140e4b5e9f760d22",
+    "train_static_500.csv": "0250aff27f6ae3b716d1d7878cdb5a42856d7e2f3a1a5167140e4b5e9f760d22",
+    "train_std_2000.csv": "947fb91f45af6db54f0925fbf44dedc700479ea8ddfd7c97fe2f8b141a639431",
+    "train_std_500.csv": "8bdc5a72ba941e66ac17feecff873491ea67446cf54b7fea0222d2c8f3ed67a8"
+  }
+}

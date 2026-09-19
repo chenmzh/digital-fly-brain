@@ -1,0 +1,30 @@
+{
+  "id": "stage2-surrogate-spec-v1",
+  "scope": "Surrogates of the full-brain STD simulator, not competing living-fly mechanisms",
+  "fit_rows": "Old M1, T=500 ms, train phase only: 5 seeds x 12 pulses",
+  "retrospective_rows": "Other old M1 rows; these results were seen previously, not a blind test",
+  "state_tau_s": 2.0,
+  "std_U": 0.01,
+  "reference_rate_hz": 150.0,
+  "reference_pulse_s": 0.2,
+  "surrogates": {
+    "resource": "x_dot=(1-x)/tau-U*f*x during input; output=(P/0.2)*max(0,A*(f/150)*mean(x)-B)",
+    "accumulator": "z_dot=(f/150-z)/tau during input; output=(P/0.2)*max(0,A*(f/150)-B*mean(z))"
+  },
+  "readout_parameter_bounds": [0.0, 1000.0],
+  "fit_loss": "sum of squared count residuals, deterministic multistart nonnegative least_squares",
+  "fit_initial_A": [5.0, 20.0, 80.0],
+  "fit_initial_B": [1.0, 5.0, 20.0, 80.0],
+  "prospective_seeds": [2701, 2702, 2703],
+  "candidate_input_hz": [100.0, 150.0, 200.0],
+  "candidate_pulse_ms": [100.0, 200.0, 400.0],
+  "candidate_silent_gap_ms": [200.0, 800.0],
+  "candidate_n_pulses": 8,
+  "response_tail_ms": 100.0,
+  "recovery_ms": [1000.0, 5000.0],
+  "selection": "Maximum RMSE disagreement across prospective seeds and train/recovery windows; second selected condition must differ in rate or pulse duration",
+  "selected_conditions": 2,
+  "control": {"name": "new_seed_control", "input_hz": 150.0, "pulse_ms": 200.0, "response_ms": 300.0, "interval_ms": 500.0, "n_pulses": 12},
+  "evaluation": {"primary": "MAE and RMSE in raw aBN1 spike counts", "per_condition_mae_threshold": 1.5, "no_refit_on_prospective_data": true},
+  "input_interface": "Greedy skip of an injected event immediately after a previously accepted event; accepted injections emit sensory spikes one tick later. Validated against all 5 old static sensory-event sequences before fitting. Must be checked again on new full-brain data."
+}

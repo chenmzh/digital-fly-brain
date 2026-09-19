@@ -1,0 +1,28 @@
+{
+  "cycle": 1,
+  "provenance": [
+    {
+      "path": "habituation/stage2/results/cycle1_s1701_fixed",
+      "manifest_sha256": "6c6502f28d32bd717184949b8db45764d154fbc000fb1ae6467592e6efa53127",
+      "elapsed_seconds": 46.93648159899749
+    },
+    {
+      "path": "habituation/stage2/results/cycle1_remaining",
+      "manifest_sha256": "78b88f92dcac5b028c481df68e07e1c56a57c1928c5c548d8c6075aba74f0c70",
+      "elapsed_seconds": 207.16912958200555
+    }
+  ],
+  "raw_event_files_verified": 90,
+  "seeds": 5,
+  "resource_rescue_pass": 5,
+  "fast_reset_no_rescue_pass": 5,
+  "both_reset_equivalence_pass": 5,
+  "bypass_equivalence_pass": 5,
+  "means": {
+    "initial_aBN1": 8.2,
+    "sham_aBN1": 0.4,
+    "resource_reset_aBN1": 8.2,
+    "fast_reset_aBN1": 0.4
+  },
+  "conclusion_scope": "Within the specified STD simulator, not identification of a living-fly mechanism."
+}

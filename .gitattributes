@@ -1,0 +1,3 @@
+# Research sources and data have recorded byte-level hashes.
+# Preserve exact bytes across checkouts, including CSV CRLF line endings.
+habituation/** -text

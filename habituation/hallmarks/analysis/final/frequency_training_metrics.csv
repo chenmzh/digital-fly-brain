@@ -1,0 +1,4 @@
+seed,case,initial,early,late,D,initial_usable,decrement,plateau,half_trial
+3701,frequency24,8.0,6.0,2.0,0.6666666666666667,True,True,True,3
+3702,frequency24,9.0,6.333333333333333,3.0,0.5263157894736842,True,True,True,3
+3703,frequency24,8.0,5.666666666666667,1.0,0.8235294117647058,True,True,True,3

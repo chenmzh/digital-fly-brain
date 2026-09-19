@@ -1,0 +1,152 @@
+{
+  "created_utc": "2026-09-19T11:47:54.575695+00:00",
+  "status": "predictions_frozen_before_new_full_brain_runs",
+  "spec": {
+    "id": "stage2-surrogate-spec-v1",
+    "scope": "Surrogates of the full-brain STD simulator, not competing living-fly mechanisms",
+    "fit_rows": "Old M1, T=500 ms, train phase only: 5 seeds x 12 pulses",
+    "retrospective_rows": "Other old M1 rows; these results were seen previously, not a blind test",
+    "state_tau_s": 2.0,
+    "std_U": 0.01,
+    "reference_rate_hz": 150.0,
+    "reference_pulse_s": 0.2,
+    "surrogates": {
+      "resource": "x_dot=(1-x)/tau-U*f*x during input; output=(P/0.2)*max(0,A*(f/150)*mean(x)-B)",
+      "accumulator": "z_dot=(f/150-z)/tau during input; output=(P/0.2)*max(0,A*(f/150)-B*mean(z))"
+    },
+    "readout_parameter_bounds": [
+      0.0,
+      1000.0
+    ],
+    "fit_loss": "sum of squared count residuals, deterministic multistart nonnegative least_squares",
+    "fit_initial_A": [
+      5.0,
+      20.0,
+      80.0
+    ],
+    "fit_initial_B": [
+      1.0,
+      5.0,
+      20.0,
+      80.0
+    ],
+    "prospective_seeds": [
+      2701,
+      2702,
+      2703
+    ],
+    "candidate_input_hz": [
+      100.0,
+      150.0,
+      200.0
+    ],
+    "candidate_pulse_ms": [
+      100.0,
+      200.0,
+      400.0
+    ],
+    "candidate_silent_gap_ms": [
+      200.0,
+      800.0
+    ],
+    "candidate_n_pulses": 8,
+    "response_tail_ms": 100.0,
+    "recovery_ms": [
+      1000.0,
+      5000.0
+    ],
+    "selection": "Maximum RMSE disagreement across prospective seeds and train/recovery windows; second selected condition must differ in rate or pulse duration",
+    "selected_conditions": 2,
+    "control": {
+      "name": "new_seed_control",
+      "input_hz": 150.0,
+      "pulse_ms": 200.0,
+      "response_ms": 300.0,
+      "interval_ms": 500.0,
+      "n_pulses": 12
+    },
+    "evaluation": {
+      "primary": "MAE and RMSE in raw aBN1 spike counts",
+      "per_condition_mae_threshold": 1.5,
+      "no_refit_on_prospective_data": true
+    },
+    "input_interface": "Greedy skip of an injected event immediately after a previously accepted event; accepted injections emit sensory spikes one tick later. Validated against all 5 old static sensory-event sequences before fitting. Must be checked again on new full-brain data."
+  },
+  "models": {
+    "resource": {
+      "A": 18.758523859818368,
+      "B": 8.068042734085353,
+      "sse_fit": 14.390611870689227,
+      "fit_metrics": {
+        "n": 60,
+        "mae": 0.40001930753659803,
+        "rmse": 0.48973822719709537,
+        "bias": 2.0909200297107115e-16
+      },
+      "retrospective_metrics": {
+        "n": 80,
+        "mae": 0.6428590189172729,
+        "rmse": 0.774338169731044,
+        "bias": -0.3360661752576493
+      }
+    },
+    "accumulator": {
+      "A": 9.467579643310495,
+      "B": 32.83645810062308,
+      "sse_fit": 32.12961698223077,
+      "fit_metrics": {
+        "n": 60,
+        "mae": 0.5828957518102792,
+        "rmse": 0.73177429332446,
+        "bias": -0.3836609472719773
+      },
+      "retrospective_metrics": {
+        "n": 80,
+        "mae": 0.7343627818165582,
+        "rmse": 0.938756299865039,
+        "bias": -0.5530695918787494
+      }
+    }
+  },
+  "selected_conditions": [
+    {
+      "name": "new_seed_control",
+      "input_hz": 150.0,
+      "pulse_ms": 200.0,
+      "response_ms": 300.0,
+      "interval_ms": 500.0,
+      "n_pulses": 12
+    },
+    {
+      "name": "f200_p400_gap800",
+      "input_hz": 200.0,
+      "pulse_ms": 400.0,
+      "response_ms": 500.0,
+      "interval_ms": 1200.0,
+      "n_pulses": 8,
+      "disagreement_rmse": 4.315334521700705
+    },
+    {
+      "name": "f150_p400_gap800",
+      "input_hz": 150.0,
+      "pulse_ms": 400.0,
+      "response_ms": 500.0,
+      "interval_ms": 1200.0,
+      "n_pulses": 8,
+      "disagreement_rmse": 2.0529279370905735
+    }
+  ],
+  "source_sha256": {
+    "habituation/stage2/surrogates.py": "b7df4cc6379a6e12f78cd802471e35a917ce5006b2fc7f209c5dc05a847e6bb3",
+    "habituation/stage2/cycle2_spec.json": "396c839e095be6efef3194fd8b1a746c0616e2277eaa5e36a248544f33a7471a",
+    "habituation/stage2/PROTOCOL.md": "20df903758fc687738ef2825c2bbcc624238aa98cf280fa7343d9b6c7ba29b4c",
+    "habituation/analysis/responses.csv": "6447ee85da53393fdb0a52a985c98f2bfed2134f4629106652e21a2be39feebf",
+    "habituation/run_experiment.py": "235aeedbdd27a9b1313c94e130af08a085ccd0dc7c2a3455fe2c7704742774bd"
+  },
+  "prediction_sha256": "e085a13082299b5ce4e1702bfabf7ad90f8d0ac5e71d9ed6b598e8fed1b99482",
+  "notes": [
+    "Retrospective checks are not blind because old summaries were known.",
+    "Two scalar surrogates, not new full-brain biological mechanisms.",
+    "New output data must not be used to refit these models."
+  ]
+}

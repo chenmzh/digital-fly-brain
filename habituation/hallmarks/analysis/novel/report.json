@@ -1,0 +1,222 @@
+{
+  "status": "completed_audit",
+  "created_utc": "2026-09-19T13:00:30.508258+00:00",
+  "analyzer_sha256": "e7bce3b0b556f56a1f81d5993ae67e148d053c51681151b058f7652c00b28ba9",
+  "metrics_sha256": "20c47d23768a4e944ff2013f2f9d38bbe93b423a34732223c4054824546d8351",
+  "protocol_sha256": "d77f25f522765f4eddedf9a24f4daa0a8b82d1465b01bc2f3bc690ae4167d635",
+  "provenance": [
+    {
+      "part": "novel",
+      "path": "habituation/hallmarks/results/novel_v1",
+      "manifest_sha256": "1cd8ef74e88abd6bc47c7f0a99ef363eb8dc3cb00466705ce81eb089727a7296",
+      "raw_event_files": 135,
+      "response_windows": 72,
+      "quiet_spikes": 0,
+      "input_event_checks": 66,
+      "input_event_mismatches": 0,
+      "elapsed_seconds": 181.06515859399224,
+      "peak_rss_mib": 2523.90234375
+    }
+  ],
+  "actual_input_sequences_verified": true,
+  "main_vs_B_interface_train_event_hashes_equal": null,
+  "screens": [
+    {
+      "seed": 3701,
+      "hallmark": "H7",
+      "B": "neu_JON_F",
+      "eligible": false,
+      "A_naive": 8,
+      "A_sham": 2,
+      "B_naive": 0,
+      "B_trained": 0,
+      "B_retention": null,
+      "supported": false
+    },
+    {
+      "seed": 3701,
+      "hallmark": "H8",
+      "B": "neu_JON_F",
+      "eligible": true,
+      "A_naive": 8,
+      "A_sham": 2,
+      "A_after_B": 2,
+      "trained_gain": 0,
+      "naive_gain": 0,
+      "gain_interaction": 0,
+      "B_naive_noninput_spikes": 190,
+      "B_trained_noninput_spikes": 190,
+      "blank_aBN1": 0,
+      "supported": false
+    },
+    {
+      "seed": 3701,
+      "hallmark": "H7",
+      "B": "neu_JON_D_m",
+      "eligible": false,
+      "A_naive": 8,
+      "A_sham": 2,
+      "B_naive": 0,
+      "B_trained": 0,
+      "B_retention": null,
+      "supported": false
+    },
+    {
+      "seed": 3701,
+      "hallmark": "H8",
+      "B": "neu_JON_D_m",
+      "eligible": true,
+      "A_naive": 8,
+      "A_sham": 2,
+      "A_after_B": 2,
+      "trained_gain": 0,
+      "naive_gain": 0,
+      "gain_interaction": 0,
+      "B_naive_noninput_spikes": 292,
+      "B_trained_noninput_spikes": 292,
+      "blank_aBN1": 0,
+      "supported": false
+    },
+    {
+      "seed": 3702,
+      "hallmark": "H7",
+      "B": "neu_JON_F",
+      "eligible": false,
+      "A_naive": 9,
+      "A_sham": 3,
+      "B_naive": 0,
+      "B_trained": 0,
+      "B_retention": null,
+      "supported": false
+    },
+    {
+      "seed": 3702,
+      "hallmark": "H8",
+      "B": "neu_JON_F",
+      "eligible": true,
+      "A_naive": 9,
+      "A_sham": 3,
+      "A_after_B": 3,
+      "trained_gain": 0,
+      "naive_gain": 0,
+      "gain_interaction": 0,
+      "B_naive_noninput_spikes": 172,
+      "B_trained_noninput_spikes": 172,
+      "blank_aBN1": 0,
+      "supported": false
+    },
+    {
+      "seed": 3702,
+      "hallmark": "H7",
+      "B": "neu_JON_D_m",
+      "eligible": false,
+      "A_naive": 9,
+      "A_sham": 3,
+      "B_naive": 0,
+      "B_trained": 0,
+      "B_retention": null,
+      "supported": false
+    },
+    {
+      "seed": 3702,
+      "hallmark": "H8",
+      "B": "neu_JON_D_m",
+      "eligible": true,
+      "A_naive": 9,
+      "A_sham": 3,
+      "A_after_B": 3,
+      "trained_gain": 0,
+      "naive_gain": 0,
+      "gain_interaction": 0,
+      "B_naive_noninput_spikes": 231,
+      "B_trained_noninput_spikes": 231,
+      "blank_aBN1": 0,
+      "supported": false
+    },
+    {
+      "seed": 3703,
+      "hallmark": "H7",
+      "B": "neu_JON_F",
+      "eligible": false,
+      "A_naive": 8,
+      "A_sham": 1,
+      "B_naive": 0,
+      "B_trained": 0,
+      "B_retention": null,
+      "supported": false
+    },
+    {
+      "seed": 3703,
+      "hallmark": "H8",
+      "B": "neu_JON_F",
+      "eligible": true,
+      "A_naive": 8,
+      "A_sham": 1,
+      "A_after_B": 1,
+      "trained_gain": 0,
+      "naive_gain": 0,
+      "gain_interaction": 0,
+      "B_naive_noninput_spikes": 165,
+      "B_trained_noninput_spikes": 165,
+      "blank_aBN1": 0,
+      "supported": false
+    },
+    {
+      "seed": 3703,
+      "hallmark": "H7",
+      "B": "neu_JON_D_m",
+      "eligible": false,
+      "A_naive": 8,
+      "A_sham": 1,
+      "B_naive": 0,
+      "B_trained": 0,
+      "B_retention": null,
+      "supported": false
+    },
+    {
+      "seed": 3703,
+      "hallmark": "H8",
+      "B": "neu_JON_D_m",
+      "eligible": true,
+      "A_naive": 8,
+      "A_sham": 1,
+      "A_after_B": 1,
+      "trained_gain": 0,
+      "naive_gain": 0,
+      "gain_interaction": 0,
+      "B_naive_noninput_spikes": 240,
+      "B_trained_noninput_spikes": 240,
+      "blank_aBN1": 0,
+      "supported": false
+    }
+  ],
+  "groups": {
+    "H7:neu_JON_F": {
+      "tested_realizations": 3,
+      "eligible": 0,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H8:neu_JON_F": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H7:neu_JON_D_m": {
+      "tested_realizations": 3,
+      "eligible": 0,
+      "supported": 0,
+      "consistent_support": false
+    },
+    "H8:neu_JON_D_m": {
+      "tested_realizations": 3,
+      "eligible": 3,
+      "supported": 0,
+      "consistent_support": false
+    }
+  },
+  "H9_eligible_B": [],
+  "H10": "Not tested: no long-term mechanism or validated long-term assay.",
+  "interpretation": "Neural proxies in one fixed simulator. Operational screens are not universal biological criteria. H4b normalization conflicts must be reported."
+}

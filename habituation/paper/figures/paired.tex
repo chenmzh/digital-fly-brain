@@ -1,0 +1,20 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=10.2cm,height=5.8cm,xmin=0.7,xmax=2.3,ymin=-4,ymax=106,
+ xtick={1,2},xticklabels={0.5 s 间隔,2 s 间隔},ytick={0,20,40,60,80,100},ylabel={递减比例 $D$（\%）},
+ grid=major,grid style={black!10},tick label style={font=\small},label style={font=\small}]
+\pgfplotstableread{data/paired_decrement.csv}\pairedtable
+\pgfplotsinvokeforeach{0,1,2,3,4}{%
+ \pgfplotstablegetelem{#1}{D500}\of\pairedtable\edef\firstvalue{\pgfplotsretval}
+ \pgfplotstablegetelem{#1}{D2000}\of\pairedtable\edef\secondvalue{\pgfplotsretval}
+ \addplot[Blue!70,thick,mark=*,mark size=2pt] coordinates {(1,\firstvalue) (2,\secondvalue)};
+}
+\addplot[Gray,dashed,thick,mark=square*,mark size=2pt] coordinates {(1,0) (2,0)};
+\addplot[Orange,densely dotted,forget plot] coordinates {(0.75,30) (2.25,30)};
+\node[anchor=west,font=\footnotesize,text=Orange] at (axis cs:0.75,34) {预设 30\% 筛查阈值};
+\end{axis}
+\end{tikzpicture}
+\caption{同一种子内的配对间隔比较。五条蓝线分别对应 M1 的五个输入实现；灰色虚线表示所有 M0 实现的 $D=0$。每条线连接同一输入在两种刺激间隔下的描述性效应量，不表示一个连续的参数拟合曲线。短间隔的递减在五个实现中都大于长间隔。部分端点重叠；具体数值见附录表\ref{tab:individual}。}
+\label{fig:paired}
+\end{figure}

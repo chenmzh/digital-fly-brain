@@ -1,0 +1,29 @@
+{
+  "built_utc": "2026-09-19T12:21:56.859314+00:00",
+  "compiler": "Tectonic 0.17.0",
+  "source_sha256": {
+    "report.tex": "402dcf511c5a6532ef65f77ef570aa33e360f4d1f5e6bb9ae085f6b51242dd9f",
+    "figures.tex": "e64402dc43463d6be1ec8b2020e86ff1c0493b66a38b7bd05cc82d362d697bda",
+    "references.bib": "cc615ee065c72dc892b3f140df34987fe0799f798a73e63963d34fbba849cf1f",
+    "make_report.py": "c569f1f4dd751682fca246b0e70bd14e3945ef919f998ee33d6d174aa487dbb6",
+    "build_report.sh": "ce96ee551ecc21de1a053f6c6b4e05cd5f8d5e6ec1c0488223a254eecf156b27",
+    "stage_summary.json": "f9e8b247be11dd51e6098915ef9de3637f84b45cc37719736215dfc7f8c5e1b0",
+    "REPORT.md": "d7f2f7a2b6d1010b23755909da027ba09c721f936983b7b548f7ff0ab0812988",
+    "report_data/baselines.tex": "a4cd2af574d1e5ab84c74857d28ea7460ae74b8cc0999b9a81cf71fd8e47a83a",
+    "report_data/causal.csv": "e77a9eaf5b2fc2de1df9e6fd9c450617d3882762e41eef1671f77738ac898e5e",
+    "report_data/fit_scores.tex": "bdcada7a2f9d68c4613b501cfc410387a7c3b3e29f0a75edaf06d912e3b08aa0",
+    "report_data/forecast_scores.tex": "2535922c82c9e80e6e3f10e640a3604a42c61bc13eb14c36627914319ed41116",
+    "report_data/neural_summary.csv": "e88ed2ab9ba9fe6b225e4c4a50eec327fd1ae6b9fe4694f46cc8d4589d1ee600",
+    "report_data/numbers.tex": "218b3ea4d46d29b1bf3368b66c80f80086e255705ad388de548af0648ad31448",
+    "report_data/rebounds.tex": "07adbb847f9fe44d5763b95393021c1e8a338034ea27486a49292d6e562740bd",
+    "report_data/recovery_0.csv": "6f4f81d54387c04e27f672c29ea6d992efd04e9e102b08552b6ca3f5103acee1",
+    "report_data/recovery_1.csv": "7fb898e9415bc9d7e01954cedc988e033be52e50df150d7b218eb035615ce877",
+    "report_data/recovery_2.csv": "b1daa94d1b3f26ec188dd8e30f4d7f5e895c14ceb7a7395de3e52eb08ff78102",
+    "report_data/train_0.csv": "cde0abe4b75ba8247f3b7ff046dfd2df6e39b47d6f0fe9c567a6ff214441b7df",
+    "report_data/train_1.csv": "771011b7b755c420b0da107394b51d519153db0b855f30617de65e9c23e3ae04",
+    "report_data/train_2.csv": "07cda79c1398fcf7eab5886232ad6e332997fc06b82f2b2a16d74b18dbfd606b"
+  },
+  "pdf_sha256": "0f6d8ebbe4ee8f423352565273394131e0a4714c260cb10a349cf0cc70a46983",
+  "pdf_bytes": 306664,
+  "scope": "Stage2 report; figures and scores derived from audited results; no new neural simulations."
+}

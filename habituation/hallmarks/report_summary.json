@@ -1,0 +1,28 @@
+{
+  "windows": 525,
+  "raw_event_files": 1026,
+  "wall_seconds": 3394.844397556968,
+  "hallmark_status": {
+    "H1": "基准短间隔3/3继续出现递减，平均D=98.0%",
+    "H2": "基准短间隔训练后，5秒探测3/3恢复至首次至少80%",
+    "H3": "2秒部分恢复条件 3/3 支持补充筛查；10秒条件 0/3 达到原较严格门槛",
+    "H4(a)": "3/3高重复频率递减更强；T=0.5/1秒的平均D为98.0%/40.8%",
+    "H4(b)": "原比较仅1/3具资格；24次补测3/3具资格，F50支持0/3；首次80%高频明确更早1/3，仍未稳健建立",
+    "H5": "弱/强输入平均D=98.0%/83.3%；方向3/3一致，2/3达到预设≥10个百分点差异",
+    "H6": "12→24次额外训练：0/3 出现预设的恢复变化",
+    "H7": "两个候选B均未达到可比较的aBN1基线；无法判定，不是阴性",
+    "H8": "两个B均有效激活网络，但都未恢复A超过等时休息；本协议未观察到",
+    "H9": "H8没有可靠解除效应，前提不满足，未继续测试",
+    "H10": "未测试：无长期机制或相应长期生物测定标定"
+  },
+  "source_sha256": {
+    "analysis/final/report.json": "a224e050cad10f66cb33fd1f324a7ae9ac48d5510a7f277c688fd460796c18aa",
+    "analysis/final/main_responses.csv": "358ab4376acc4a4518b97cb1b8b8d595737590941aa2624d24bdb1f869913847",
+    "analysis/final/partial_responses.csv": "f86cf512704688faed326bdf99733c7591afbc172b35cf79d4eba23a76ae1875",
+    "analysis/final/training_metrics.csv": "22dc4ea8866400f493afc0a7f981a34e9e7cc4d89d93b4bee23b09b0888e2957",
+    "analysis/final/recovery_profiles.csv": "5df152fc8d52fd5afef20078094ad4c63462418dde5b85af2f4c1954b9c59177",
+    "analysis/final/frequency_recovery_profiles.csv": "8436733252f9eeb11cc8a0d3d8c8d60b0cb292d4e7849f90d23cb001a2c17de8",
+    "analysis/final/frequency_training_metrics.csv": "77bf50c8eafe51d13f271fda35614bc929dc55fd0cd62a1c9741015fbebd5dc9",
+    "make_report.py": "c6d790dbf24cac582e987a892668522d3ed937fa78b2490592f14f18e48ca894"
+  }
+}

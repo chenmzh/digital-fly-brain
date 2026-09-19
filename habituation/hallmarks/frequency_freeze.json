@@ -1,0 +1,9 @@
+{
+  "created_utc": "2026-09-19T13:51:26.988673+00:00",
+  "primary_results_seen": true,
+  "source_sha256": {
+    "FREQUENCY_SUPPLEMENT.md": "36b22f3ce8ac6f9d17b9c11de5585f7c52b0d5c26c0340fc9eb951a230b5f49e",
+    "frequency_protocol.json": "a1afa32549cc6d0ffc8dc232d80ce88f82c2b69790073da3d84dbeac697101f7",
+    "analysis/full/report.json": "763caa69f632761d8daa1f2ef5c1e9bc4e0f57adb393ac9cf15ed1d430c49e35"
+  }
+}

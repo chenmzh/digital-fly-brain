@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "created_utc": "2026-09-19T14:11:29.352345+00:00",
+  "tests": {
+    "base-tests.log": 10,
+    "stage2-tests.log": 6,
+    "hallmark-tests.log": 16
+  },
+  "total_tests": 32,
+  "dependencies_checked": 18,
+  "raw_event_files": 1026,
+  "observation_windows": 525,
+  "input_event_sequences_verified": 519,
+  "quiet_intervals": 501,
+  "quiet_spikes": 0,
+  "successful_batch_wall_seconds": 3394.844397556968,
+  "max_peak_rss_mib": 2523.90234375,
+  "initial_and_restored_full_event_equivalence": true,
+  "preserved_old_deliverables_sha256": {
+    "habituation/paper/report.pdf": "d681e224776704b315df45b2419c7c97a660f037840cece9708565d93e81b91a",
+    "habituation/paper/report_source.zip": "f8ced2f98717b3c78d32c25c730f0e7d3da08733607e1743913b3b84a7213923",
+    "habituation/stage2/report.pdf": "0f6d8ebbe4ee8f423352565273394131e0a4714c260cb10a349cf0cc70a46983"
+  },
+  "upstream_commit": "91bdd1e7dcf193f3e7ca5a8933497fcef63b7960",
+  "upstream_worktree_clean": true,
+  "primary_screens_preserved_after_supplement": true,
+  "negative_checks": "analysis/negative_checks.json",
+  "pdf_validation": "report_validation.json",
+  "syntax_and_local_links": "passed",
+  "git_diff_check": "passed",
+  "active_experiment_processes": [],
+  "subagents_launched": 0,
+  "committed_or_pushed_by_this_task": false,
+  "validation_log_sha256": {
+    "validation/hallmark-tests.log": "e66b177f4b8761bd5fc9c2cba12bada5b261fe82283ab7c89a0f07e3ad63be74",
+    "validation/dependencies.log": "931ffb55ac0a9dc8f9895b9ee510cbb48a6e0c0b33fc4b0ef81c8ae08306c905",
+    "validation/base-tests.log": "dae2a063a156fef7f829308a8709d220ab3f72527c73e7fb56572355cd1be22e",
+    "validation/stage2-tests.log": "44c8dfb8ee434b092495c4c82b73a2c3011b6023ec5892486d0de936cd0528e2"
+  },
+  "audit_sha256": "a224e050cad10f66cb33fd1f324a7ae9ac48d5510a7f277c688fd460796c18aa"
+}

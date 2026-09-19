@@ -1,0 +1,41 @@
+\begin{figure}[!htb]
+\centering
+\small\textbf{A. 模型与读出：解剖结构保留，候选慢机制局部改变传递}\par\medskip
+\resizebox{0.97\linewidth}{!}{%
+\begin{tikzpicture}[>=Latex,font=\footnotesize,
+ box/.style={draw=Ink!65,rounded corners=2pt,align=center,minimum height=1.0cm,minimum width=2.4cm,fill=Ink!3}]
+\node[box] (input) at (0,0) {冻结随机输入\\逐次相同回放};
+\node[box] (jon) at (3.1,0) {70 个 JO-CE\\机械感觉细胞};
+\node[box,minimum width=3.1cm] (brain) at (6.7,0) {保留完整连接网络\\127,400 个神经元};
+\node[box,minimum width=3.1cm] (readout) at (10.8,0) {aBN1（主要读出）\\aDN1/aDN2（次要读出）};
+\draw[->,thick] (input)--(jon);
+\draw[->,thick] (jon)--(brain);
+\draw[->,thick] (brain)--(readout);
+\node[align=center,text=Blue] (std) at (4.8,-1.5)
+{M0：固定传递强度\\M1：JO-CE 兴奋性输出边\\引入可恢复资源状态};
+\draw[->,Blue] (std.north)--(4.5,-0.1);
+\node[box,dashed,fill=white,minimum height=0.85cm] (body) at (10.8,-1.65) {完整身体与梳理动作\\本轮未建模};
+\draw[->,dashed] (readout)--(body);
+\end{tikzpicture}}
+
+\medskip\textbf{B. 连续训练与独立恢复分支（示意，不按时间比例绘制）}\par\medskip
+\resizebox{0.95\linewidth}{!}{%
+\begin{tikzpicture}[>=Latex,font=\footnotesize,
+ pulse/.style={draw=Blue,fill=Blue!9,rounded corners=2pt,align=center,minimum width=1.1cm,minimum height=0.8cm},
+ state/.style={draw=Ink,align=center,minimum width=1.8cm,minimum height=0.9cm}]
+\node[pulse] (p1) at (0,0) {刺激 1};
+\node[pulse] (p2) at (1.7,0) {刺激 2};
+\node (ellipsis) at (3.1,0) {$\cdots$};
+\node[pulse] (p12) at (4.5,0) {刺激 12};
+\node[state,fill=Ink!5] (snap) at (7,0) {同一训练末态\\保存快照};
+\draw[->] (p1)--node[above] {$T$}(p2);
+\draw[->] (p2)--(ellipsis);\draw[->] (ellipsis)--(p12);\draw[->] (p12)--(snap);
+\node[state,minimum width=3.0cm] (r2) at (11,0.8) {休息 2 s\\$\rightarrow$ 探测 A};
+\node[state,minimum width=3.0cm] (r10) at (11,-0.8) {休息 10 s\\$\rightarrow$ 探测 A};
+\draw[->] (snap.east)--++(0.5,0)|-(r2.west);
+\draw[->] (snap.east)--++(0.5,0)|-(r10.west);
+\node[align=center] at (2.6,-1.05) {刺激宽度 200 ms；响应窗口 300 ms\\$T=0.5$ s 或 2 s；序列内部不重置};
+\end{tikzpicture}}
+\caption{实验逻辑示意。A 中箭头表示输入和测量流程，不是完整解剖回路图；JO-CE 与被监测细胞均属于同一全脑网络，图中方框不是互斥细胞集合。M1 改变 JO-CE 的全部选中兴奋性输出边，不限于直接连到 aBN1 的边。B 中两个探测分支独立恢复同一训练末态，因此短休息探测不会污染长休息结果。}
+\label{fig:design}
+\end{figure}

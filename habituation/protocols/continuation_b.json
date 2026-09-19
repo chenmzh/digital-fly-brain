@@ -1,0 +1,43 @@
+{
+  "id": "joce-memory-v1-continuation_b",
+  "created_date": "2026-09-16",
+  "question": "Fixed connectome dynamics versus one-timescale afferent short-term depression",
+  "input_population": "neu_JON_CE",
+  "readouts": {
+    "aBN1": "720575940630907434",
+    "aDN1": "720575940616185531",
+    "aDN2": "720575940629806974"
+  },
+  "primary_readout": "aBN1",
+  "models": [
+    "std"
+  ],
+  "seeds": [
+    1704,
+    1705
+  ],
+  "dt_ms": 0.1,
+  "pulse_ms": 200.0,
+  "response_ms": 300.0,
+  "input_hz": 150.0,
+  "n_pulses": 12,
+  "onset_intervals_ms": [
+    500.0,
+    2000.0
+  ],
+  "recovery_ms": [
+    2000.0,
+    10000.0
+  ],
+  "std_U": 0.01,
+  "std_tau_ms": 2000.0,
+  "early_n": 3,
+  "late_n": 3,
+  "decrement_threshold": 0.3,
+  "recovery_increment_fraction": 0.2,
+  "recovery_initial_fraction": 0.8,
+  "plateau_tolerance_fraction": 0.1,
+  "note": "Neural-output mechanism experiment, not a validated animal habituation assay. No fitted parameters.",
+  "execution_note": "Execution-only subset of main_v1; biological parameters unchanged; earlier complete std seed1701 retained.",
+  "parent_protocol_sha256": "0c7477c0e5debaaf0a764ac6000285cb7f6cbc8ef9e9fc468e7d889b3d8619f5"
+}

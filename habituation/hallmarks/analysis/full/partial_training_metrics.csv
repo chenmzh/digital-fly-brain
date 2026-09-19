@@ -1,0 +1,10 @@
+seed,case,initial,early,late,D,initial_usable,decrement,plateau,half_trial
+3701,partial_cycle1,8.0,5.666666666666667,0.0,1.0,True,True,True,3
+3701,partial_cycle2,6.0,3.6666666666666665,0.0,1.0,True,True,True,2
+3701,partial_cycle3,6.0,3.6666666666666665,0.0,1.0,True,True,True,2
+3702,partial_cycle1,9.0,5.666666666666667,0.3333333333333333,0.9411764705882353,True,True,True,3
+3702,partial_cycle2,6.0,3.6666666666666665,0.0,1.0,True,True,True,2
+3702,partial_cycle3,5.0,3.3333333333333335,0.0,1.0,True,True,True,3
+3703,partial_cycle1,8.0,5.333333333333333,0.0,1.0,True,True,True,3
+3703,partial_cycle2,5.0,3.3333333333333335,0.0,1.0,True,True,True,3
+3703,partial_cycle3,5.0,3.3333333333333335,0.0,1.0,True,True,True,3

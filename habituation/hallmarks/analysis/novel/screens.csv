@@ -1,0 +1,13 @@
+seed,hallmark,B,eligible,A_naive,A_sham,B_naive,B_trained,B_retention,supported,A_after_B,trained_gain,naive_gain,gain_interaction,B_naive_noninput_spikes,B_trained_noninput_spikes,blank_aBN1
+3701,H7,neu_JON_F,False,8,2,0.0,0.0,,False,,,,,,,
+3701,H8,neu_JON_F,True,8,2,,,,False,2.0,0.0,0.0,0.0,190.0,190.0,0.0
+3701,H7,neu_JON_D_m,False,8,2,0.0,0.0,,False,,,,,,,
+3701,H8,neu_JON_D_m,True,8,2,,,,False,2.0,0.0,0.0,0.0,292.0,292.0,0.0
+3702,H7,neu_JON_F,False,9,3,0.0,0.0,,False,,,,,,,
+3702,H8,neu_JON_F,True,9,3,,,,False,3.0,0.0,0.0,0.0,172.0,172.0,0.0
+3702,H7,neu_JON_D_m,False,9,3,0.0,0.0,,False,,,,,,,
+3702,H8,neu_JON_D_m,True,9,3,,,,False,3.0,0.0,0.0,0.0,231.0,231.0,0.0
+3703,H7,neu_JON_F,False,8,1,0.0,0.0,,False,,,,,,,
+3703,H8,neu_JON_F,True,8,1,,,,False,1.0,0.0,0.0,0.0,165.0,165.0,0.0
+3703,H7,neu_JON_D_m,False,8,1,0.0,0.0,,False,,,,,,,
+3703,H8,neu_JON_D_m,True,8,1,,,,False,1.0,0.0,0.0,0.0,240.0,240.0,0.0

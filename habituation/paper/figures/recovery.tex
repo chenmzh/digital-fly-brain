@@ -1,0 +1,19 @@
+\newcommand{\RecoveryPanel}[2]{%
+\begin{tikzpicture}
+\begin{axis}[width=\linewidth,height=5.7cm,title={#2},ylabel={aBN1 脉冲数},xmin=-0.4,xmax=3.4,ymin=-0.3,ymax=11,
+ xtick={0,1,2,3},xticklabels={首次,末期,休息2秒,休息10秒},ytick={0,2,4,6,8,10},
+ grid=major,grid style={black!10},tick label style={font=\scriptsize},label style={font=\small},title style={font=\small\bfseries}]
+\addplot[Gray,only marks,mark=square*,mark size=2pt,error bars/.cd,y dir=both,y explicit]
+ table[x expr=\thisrow{stage}-0.07,y=mean,y error minus=minus,y error plus=plus]{data/recovery_static_#1.csv};
+\addplot[Blue,only marks,mark=*,mark size=2pt,error bars/.cd,y dir=both,y explicit]
+ table[x expr=\thisrow{stage}+0.07,y=mean,y error minus=minus,y error plus=plus]{data/recovery_std_#1.csv};
+\end{axis}
+\end{tikzpicture}}
+\begin{figure}[tbp]
+\centering
+\begin{minipage}{0.49\linewidth}\RecoveryPanel{500}{A. 训练间隔 0.5 s}\end{minipage}\hfill
+\begin{minipage}{0.49\linewidth}\RecoveryPanel{2000}{B. 训练间隔 2 s}\end{minipage}
+\par\smallskip{\small\textcolor{Gray}{$\blacksquare$ M0：固定连接}\qquad\textcolor{Blue}{$\bullet$ M1：局部 STD}}
+\caption{首次、末期及独立恢复探测的响应。点为五个输入实现的均值，误差棒为 min--max；“末期”先在每个实现内平均第 10--12 次，再跨实现汇总。横轴是四个离散条件，\textbf{不是均匀时间轴}，因此不连接为恢复曲线。10 s 时 M1 组均值回到首次水平，但个别实现低于或高于首次。两个恢复点不足以估计完整恢复动力学。}
+\label{fig:recovery}
+\end{figure}

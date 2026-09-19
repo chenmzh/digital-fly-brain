@@ -1,0 +1,14 @@
+{
+  "resource_better_in_both_discriminating_designs": true,
+  "resource_mae_pass_conditions": 3,
+  "accumulator_mae_pass_conditions": 1,
+  "formal_new_windows": 201,
+  "raw_event_files_verified": 126,
+  "successful_batch_wall_seconds": 1479.0792740469915,
+  "source_sha256": {
+    "analysis/cycle1/report.json": "333c56d430fa714af2a100d388cb5d04b93e24a953f213147179fe9ad6de1bca",
+    "analysis/cycle2/frozen_models.json": "f61ceca6f1995289177dde0a8dcde1ba87da5a7449aaa68f956936bb7f809cf8",
+    "analysis/cycle3/report.json": "6a882dc2003ddd74fafc3232c5b777c296176af14394c483e13c479b22864dfd",
+    "make_report.py": "c569f1f4dd751682fca246b0e70bd14e3945ef919f998ee33d6d174aa487dbb6"
+  }
+}

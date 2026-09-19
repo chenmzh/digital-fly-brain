@@ -1,9 +1,11 @@
 # 数字果蝇：全脑复现基线
 
-基于 Shiu 等（Nature, 2024）的官方 Brian2 实现，先复现全脑神经活动，再探索连接组约束的参数训练。**本项目不是完整数字动物，不包含虚拟身体或学习机制。**
+基于 Shiu 等（Nature, 2024）的官方 Brian2 实现，先复现全脑神经活动，再研究连接组约束的动态机制。**本项目不是完整数字动物，不包含虚拟身体。** 原始基线没有可塑性；新增习惯化研究比较固定连接与局部短时突触抑制。
 
 - 总体计划：[PLAN.md](PLAN.md)
 - 本机复现结果与限制：[docs/REPRODUCTION.md](docs/REPRODUCTION.md)
+- 习惯化研究、文献和全脑实验：[habituation/README.md](habituation/README.md)
+- 最新经典特征补测：[结果](habituation/hallmarks/REPORT.md)、[6页PDF](habituation/hallmarks/report.pdf)。
 - 模型论文：https://www.nature.com/articles/s41586-024-07763-9
 
 ## 已完成
@@ -24,7 +26,7 @@
 
 ## 公开仓库与本地文件
 
-公开版本包含实验入口、依赖清单、计划及复现报告；不包含 `.venv/`、`upstream/`、`results/` 和原始崩溃日志。上述实测结果为本机实验记录，不是随公开仓库附带的数据文件。新机器请先按下文准备环境与上游数据，再运行生成自己的结果。
+公开版本包含基线与习惯化实验代码、依赖清单、研究方案、汇总 CSV/JSON、三份 PDF 及排版源码；首轮还提供排版源码 ZIP。不包含 `.venv/`、`upstream/`、任何层级的 `results/`、工具/字体缓存和原始运行日志。汇总结果可直接查看，但全脑原始事件仍保留在本机；新机器需准备环境与上游数据，重新运行实验才能独立回读原始事件。同步范围与历史状态说明见 [docs/PUBLICATION.md](docs/PUBLICATION.md)。
 
 本项目是独立复现工作，不是原作者官方实现的替代或背书。上游仓库使用 MIT 许可证；其版权声明保留在独立检出的仓库中。
 
@@ -92,4 +94,4 @@ uv pip check --python .venv/bin/python
 
 ## 下一步
 
-建议先扩大相同协议的重复次数与刺激频率覆盖，再设计参数敏感性实验；尚未开展参数训练、Flyvis 复现、MaleCNS 迁移或身体闭环。
+已在独立的 [habituation/](habituation/README.md) 中完成 JO-CE 机械感觉连续刺激实验：固定连接模型未见递减，局部短时突触抑制产生部分习惯化样神经输出特征；详见[结果与限制](habituation/RESULTS.md)。随后完成[阶段二三轮闭环研究](habituation/stage2/README.md)：资源状态因果干预、两个低维代理及冻结预测的新输入检验，新增201个响应窗口；见[阶段报告PDF](habituation/stage2/report.pdf)。低维代理做了读出系数拟合，但尚未开展全脑参数训练、Flyvis 复现、MaleCNS 迁移或身体闭环。之后完成[经典hallmarks补测](habituation/hallmarks/README.md)：新增525个观测窗口、独立回读1026个事件文件。H3在部分恢复条件下获支持，H5方向一致且2/3达到预设效应量；H4(b)未稳健建立，H6和本次两种B的H8未见效应，H7缺少可比较基线，H9/H10未测。上述都是神经代理的条件性结论；本次按用户明确授权同步代码、汇总与报告，不上传原始事件。局部反弹的时序/结构来源、自然刺激泛化和长期机制仍待检验。

@@ -1,0 +1,41 @@
+\newcommand{\TrainPanel}[3]{%
+\begin{tikzpicture}
+\begin{axis}[width=\linewidth,height=5.2cm,title={#2},xlabel={刺激序号},ylabel={脉冲数},
+ xmin=0.7,xmax=#3+0.3,ymin=-0.3,ymax=\PlotMax,xtick={1,4,8,12},grid=major,grid style={black!10},
+ tick label style={font=\scriptsize},label style={font=\small},title style={font=\small\bfseries}]
+\addplot[name path=low#1,draw=none,forget plot] table[x=trial,y=low]{report_data/train_#1.csv};
+\addplot[name path=high#1,draw=none,forget plot] table[x=trial,y=high]{report_data/train_#1.csv};
+\addplot[black!10,forget plot] fill between[of=low#1 and high#1];
+\addplot[black,thick,mark=*,mark size=1.5pt] table[x=trial,y=actual]{report_data/train_#1.csv};
+\addplot[Green,thick,dashed,mark=triangle*,mark size=1.7pt] table[x=trial,y=resource]{report_data/train_#1.csv};
+\addplot[Orange,thick,dashdotted,mark=square*,mark size=1.4pt] table[x=trial,y=accumulator]{report_data/train_#1.csv};
+\end{axis}\end{tikzpicture}}
+\begin{figure}[!htbp]
+\centering
+\begin{minipage}{.32\linewidth}\TrainPanel{0}{新种子对照}{12}\end{minipage}\hfill
+\begin{minipage}{.32\linewidth}\TrainPanel{1}{判别 A}{8}\end{minipage}\hfill
+\begin{minipage}{.32\linewidth}\TrainPanel{2}{判别 B}{8}\end{minipage}
+\par\smallskip\small $\bullet$ 全脑 M1\quad\textcolor{Green}{$\blacktriangle$ 资源代理 S}\quad\textcolor{Orange}{$\blacksquare$ 积累代理 I}
+\caption{新种子、新协议的训练响应与运行前冻结预测。每点为三个输入实现的均值；灰带为全脑输出 min--max，不是置信区间。代理参数仅从旧短间隔数据拟合。对照为150 Hz/200 ms/$T=0.5$ s，判别 A 为200 Hz/400 ms/$T=1.2$ s，判别 B 为150 Hz/400 ms/$T=1.2$ s。预测没有根据这些新输出重拟合。}
+\label{fig:forecast}
+\end{figure}
+
+\newcommand{\RecoveryPanel}[2]{%
+\begin{tikzpicture}
+\begin{axis}[width=\linewidth,height=4.7cm,title={#2},xlabel={休息时间（秒）},ylabel={脉冲数},
+ xmin=0,xmax=6,ymin=-0.3,ymax=\PlotMax,xtick={1,5},grid=major,grid style={black!10},
+ tick label style={font=\scriptsize},label style={font=\small},title style={font=\small\bfseries}]
+\addplot[black,only marks,mark=*,mark size=2pt,error bars/.cd,y dir=both,y explicit]
+ table[x=rest_s,y=actual,y error minus=minus,y error plus=plus]{report_data/recovery_#1.csv};
+\addplot[Green,only marks,mark=triangle*,mark size=2.2pt] table[x=rest_s,y=resource]{report_data/recovery_#1.csv};
+\addplot[Orange,only marks,mark=square*,mark size=1.8pt] table[x=rest_s,y=accumulator]{report_data/recovery_#1.csv};
+\end{axis}\end{tikzpicture}}
+\begin{figure}[!htbp]
+\centering
+\begin{minipage}{.32\linewidth}\RecoveryPanel{0}{新种子对照}\end{minipage}\hfill
+\begin{minipage}{.32\linewidth}\RecoveryPanel{1}{判别 A}\end{minipage}\hfill
+\begin{minipage}{.32\linewidth}\RecoveryPanel{2}{判别 B}\end{minipage}
+\par\smallskip\small $\bullet$ 全脑 M1\quad\textcolor{Green}{$\blacktriangle$ 资源代理 S}\quad\textcolor{Orange}{$\blacksquare$ 积累代理 I}
+\caption{独立恢复分支的观测与预测。黑点及误差棒为全脑输出均值和 min--max，两个代理显示各自冻结预测的均值。每个恢复分支都从同一训练末态出发，不存在1秒探测影响5秒结果的问题。只有两个离散时间点，因此不连接成拟合恢复曲线，也不据此估计精确恢复时间常数。}
+\label{fig:recovery}
+\end{figure}

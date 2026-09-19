@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "pages": 10,
+  "pdf_sha256": "0f6d8ebbe4ee8f423352565273394131e0a4714c260cb10a349cf0cc70a46983",
+  "pdf_bytes": 306664,
+  "embedded_font_count": 22,
+  "content_and_numeric_checks": true,
+  "source_and_frozen_prediction_hash_checks": true,
+  "no_missing_glyphs_overfull_boxes_or_unresolved_references": true,
+  "nonblocking_warnings": "Portable Tectonic Fontconfig compatibility and system-font path warnings; no system configuration modified."
+}

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "expected_error": "Incomplete hallmark run",
+      "returncode": 1,
+      "partial_analysis_created": false,
+      "error_tail": "ValueError: Incomplete hallmark run"
+    },
+    {
+      "expected_error": "Frequency supplement requires matched main controls",
+      "returncode": 1,
+      "partial_analysis_created": false,
+      "error_tail": "ValueError: Frequency supplement requires matched main controls"
+    }
+  ]
+}

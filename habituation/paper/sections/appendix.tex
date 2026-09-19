@@ -1,0 +1,154 @@
+\section{术语与符号速查}
+\label{app:glossary}
+\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}p{11.8cm}}
+\caption{常用术语。类比只用于帮助阅读，不替代实际模型定义。}\label{tab:glossary}\\
+\toprule
+术语 & 本报告中的含义\\
+\midrule\endfirsthead
+\toprule 术语 & 本报告中的含义\\\midrule\endhead
+\bottomrule\endfoot
+神经元（neuron） & 能积累输入并在越过阈值时发出脉冲的模型单元；并未模拟真实细胞的全部生物过程。\\
+脉冲（spike） & 一次离散神经发放事件。响应计数为指定窗口内的事件数，而非整段仿真的平均活动。\\
+突触（synapse） & 神经元之间的作用接点。多处解剖接点可聚合为一条带权有向边。\\
+连接组（connectome） & 细胞及其连接的结构图谱；不自动包含所有动力学参数或生前状态。\\
+兴奋/抑制 & 本模型中增加或减少后续细胞发放倾向的传递符号；不等于“有用/有害”。\\
+LIF & Leaky integrate-and-fire，泄漏积分发放。输入被积累，状态同时衰减，越阈值后发放并重置。\\
+不应期（refractory period） & 发放后的短时特殊状态；本上游实现中暂停两个状态方程的更新。\\
+习惯化（habituation） & 重复刺激后的反应递减及其相关性质。需与输入适应和输出失能区分。\\
+去习惯化（dishabituation） & 新刺激之后，对原来已递减刺激的响应增加；不等于新刺激自身引起响应。\\
+STD & Short-term synaptic depression，短时突触效能下降；不是“短时加强抑制性突触”的缩写。\\
+JO-CE & 本实验驱动的 Johnston 器官机械感觉细胞群，固定清单含 70 个神经元。\\
+aBN1 & 触角梳理相关脑内中间神经元，本研究主要读出。\\
+aDN1/aDN2 & 相关下行神经元，本研究次要读出；不是完整身体模型。\\
+读出（readout） & 从模型记录的观测量。本报告主要为细胞的窗口内脉冲数，而非动物行为标签。\\
+冻结输入 & 同一种子生成后重复回放同一组事件，用来排除逐次输入随机变化。\\
+状态快照 & 网络状态的保存副本，用于从同一训练末态产生独立恢复分支。\\
+充分性/必要性 & “存在此机制就能产生现象”与“没有此机制就不能产生现象”是不同命题。\\
+地板效应 & 初始计数已经很低甚至为零，进一步下降和比值就很难解释。\\
+$T$ 与 $\Delta t$ & 前者是两次刺激起始的间隔；后者是仿真的数值时间步，二者相差多个数量级。\\
+$I,E,L,D$ & 首次响应、早期均值、末期均值和递减比例。$D$ 的分母是 $E$，不是 $I$ 或 M0。\\
+\end{longtable}
+\normalsize
+
+\section{逐种子结果与输入清单摘要}
+\begin{table}[htbp]
+\centering\small
+\caption{M1 的全部逐种子主要结果。单位同主表；$D$ 为百分数。没有挑选“最好看”的种子。M0 在种子 1701--1704 的所有 aBN1 响应均为 10，在 1705 均为 9，因此不重复列出其恒定行。}
+\label{tab:individual}
+\begin{tabular}{rrrrrrrr}
+\toprule
+种子 & $T$(s) & $I$ & $E$ & $L$ & $D$(\%) & $P_2$ & $P_{10}$\\
+\midrule
+\inputrows{data/individual_rows.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{每次刺激的注入事件与实际感觉神经元脉冲数。相同种子在全部对应条件下保持这些计数，且实际脉冲的相对时刻也一致。注入与发放的差额不是训练中逐次增大的效应；本轮未对每个差额事件的数值调度原因作单独归因。}
+\label{tab:input}
+\begin{tabular}{rrr}
+\toprule
+种子 & 注入事件数 & 实际感觉脉冲数\\
+\midrule
+\inputrows{data/input_rows.tex}
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{读出细胞的 FlyWire v630 标识。JSON 清单采用字符串，原始事件 Parquet 使用 int64，避免浮点表示破坏大整数精度。}
+\label{tab:ids}
+\begin{tabular}{ll}
+\toprule
+读出 & 标识\\
+\midrule
+aBN1 & \texttt{720575940630907434}\\
+aDN1 & \texttt{720575940616185531}\\
+aDN2 & \texttt{720575940629806974}\\
+\bottomrule
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\section{资源状态为何能够保存刺激历史：一个简短推导}
+\label{app:derivation}
+下面是对既定状态方程的解释，不是另一个已运行的实验，也不是生理参数拟合。没有事件到达时，式\eqref{eq:resource}有精确解
+\begin{equation}
+x(t)=1-\bigl[1-x(t_0)\bigr]\exp\left[-\frac{t-t_0}{\tau_{\mathrm{rec}}}\right].
+\label{eq:recoveryanalytic}
+\end{equation}
+因此，在同一末态之后等待一个恢复时间常数，资源\emph{亏损}剩约 37\%；等待五个时间常数，亏损剩约 0.67\%。本研究人为设定 $\tau_{\mathrm{rec}}=2\secunit$，所以看到资源变量本身在 2 s/10 s 附近恢复，并不能算作独立发现。需要测量的是神经输出是否也恢复，以及这种关系能否预测新的刺激与干预。
+
+为了理解频率效应，可把脉冲输入粗略近似为平均发放率 $f$，忽略具体到达时刻和网络反馈，得到
+\begin{equation}
+\frac{\mathrm{d}x}{\mathrm{d}t}\approx \frac{1-x}{\tau_{\mathrm{rec}}}-Ufx.
+\end{equation}
+若持续输入足够久，其近似平衡值为
+\begin{equation}
+x_\infty\approx\frac{1}{1+Uf\tau_{\mathrm{rec}}}.
+\end{equation}
+在 $U=0.01$、$f=150\,\mathrm{Hz}$、$\tau_{\mathrm{rec}}=2\secunit$ 时，该连续输入近似给出 $x_\infty=0.25$。\textbf{它不是本实验 200 ms 脉冲序列的实测平台值。}
+
+有限脉冲之后，资源沿式\eqref{eq:recoveryanalytic}补充。若下一次刺激来得更早，就通常来不及补足；资源亏损可在多次刺激间积累。这解释了为什么单时间尺度机制可以产生间隔依赖。但从 $x$ 到 aBN1 的输出，还要经过异质连接、兴奋与抑制相互作用以及阈值发放，因此不能把输出计数简单当作 $x$ 的线性比例。
+
+\section{复现、校验与审计路径}
+\label{app:repro}
+\subsection{主要文件及职责}
+以下路径均相对于项目根目录。原始事件文件位于本地忽略目录，论文可读汇总与源文件位于可版本管理目录；两者不是同一种发布状态。
+\begin{itemize}
+\item \path{habituation/RESEARCH_PLAN.md}：正式结果前的研究问题、判据与停止条件。
+\item \path{habituation/protocols/main_v1.json}：正式生物/数值协议。
+\item \path{habituation/run_experiment.py}：连续状态全脑入口。
+\item \path{habituation/analyze.py}：独立事件回读与指标计算。
+\item \path{habituation/results/main_v1/}：中断批次的完整检查点及未纳入分析的片段。
+\item \path{habituation/results/continuation_a/} 和 \path{habituation/results/continuation_b/}：同协议接续批次。
+\item \path{habituation/analysis/responses.csv}：280 个响应窗口及辅助状态。
+\item \path{habituation/analysis/metrics_by_seed.csv}：20 条序列的逐种子指标。
+\item \path{habituation/analysis/report.json}：审计结果、来源哈希和描述性汇总。
+\item \path{habituation/paper/prepare_data.py}：只读取已审计数据，生成本文制表与绘图输入。
+\item \path{habituation/paper/report.tex}：本文 LaTeX 主文件；正文分节及文献在同目录。
+\end{itemize}
+
+\subsection{可执行复核流程}
+从项目根目录，使用已有独立环境执行以下命令。新的输出目录必须不存在；不覆盖旧结果。
+\begin{quote}\footnotesize\ttfamily
+.venv/bin/python habituation/analyze.py\ \textbackslash\\
+\hspace*{1em}--runs habituation/results/main\_v1\ \textbackslash\\
+\hspace*{2em}habituation/results/continuation\_a\ \textbackslash\\
+\hspace*{2em}habituation/results/continuation\_b\ \textbackslash\\
+\hspace*{1em}--output habituation/results/new\_audit
+\end{quote}
+这会回读事件并要求完整的 20 条序列。只有主中断批次而没有接续批次时，分析器拒绝将其视为完整实验。工程单元测试覆盖恒定响应、递减后恢复、递减不恢复、零基线、平台、输入回放和非法协议，共 10 项；测试通过不等同于所有生物假设成立。
+
+本轮正式协议的 SHA-256 为：
+\begin{quote}\small\ttfamily
+0c7477c0e5debaaf0a764ac6000285cb7f6\\
+cbc8ef9e9fc468e7d889b3d8619f5
+\end{quote}
+两个印刷行直接连接构成完整的 64 位十六进制字符串。更多哈希保存在报告 JSON 和逐运行 manifest 中，而不是凭文字宣称“版本一致”。
+
+\subsection{必须保留的偏离与工程事实}
+\begin{enumerate}
+\item \textbf{工具超时，不是阴性生物结果。}主运行被 1,800 s 工具时限终止，后续通过不改变参数的子集协议补完。中断片段保留但不参与统计。
+\item \textbf{入口网格校验修复。}模拟启动后发现默认相对容差可能接受较长时间参数的半步错位，因此将校验改为绝对容差；正式协议本来就严格对齐网格，模型数值计算没有改变。历史入口快照与当前工作副本的区别被明确记录。
+\item \textbf{探索性归一化。}“已损失响应的恢复比例”在看到部分结果后增加，只作为探索性诊断，未改写正式 H1/H2 判据。
+\item \textbf{资源统计不夸大。}中断批次没有最终 RSS；记录耗时不是纯求解时间，也不是全部机器占用时间。
+\item \textbf{没有追加模拟挑结果。}本报告排版阶段重新审计已有事件并生成图表，没有新增神经仿真、拟合参数或删掉不符合叙述的种子。
+\end{enumerate}
+
+\section{常见误读与阅读自检}
+\begin{enumerate}
+\item \textbf{“数字果蝇已经会学习了吗？”}本轮只能确认模型内部分神经响应特征，不能把它提升为完整动物学习或意识证据。
+\item \textbf{“既然 M1 权重会变，为什么说不需要训练？”}基础解剖权重不经过优化器更新，但有效传递会随短时资源状态变化；短时可塑性与长期参数训练不是同一概念。
+\item \textbf{“12 次刺激乘 5 个种子，就是 60 个独立样本吗？”}不是。同一序列内部状态相连；五个种子也只是同一图谱上的输入实现。
+\item \textbf{“M1 通过 H1/H2，能叫动物习惯化吗？”}不能直接这样称呼。还缺少刺激特异性、输出能力与生物数据匹配等证据。
+\item \textbf{“恢复均值等于首次，是否每例都精确恢复？”}不是。有些实现低于首次，有些高于首次，附录保留了这些差别。
+\item \textbf{“M0 阴性意味着连接组没有用吗？”}不是。它在正常感觉传递中仍有作用；本轮只说明当前动态假设不足以产生所测试的慢历史效应。结构的独特贡献需要另一组对照来证明。
+\item \textbf{“这是与 LLM 相同的学习吗？”}本研究使用真实连接约束的稀疏脉冲网络，显式推进毫秒级状态；没有语言 token、预训练目标或反向传播优化。两者都属于计算模型，但不能因都叫神经网络就等同其任务和证据标准。
+\item \textbf{“论文体例就代表可以直接投稿了吗？”}不代表。署名、数据公开、机制竞争、预测验证与新颖性审查仍需完成。排版成熟度不能替代科学证据成熟度。
+\end{enumerate}
+\FloatBarrier

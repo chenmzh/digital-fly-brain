@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "pages": 6,
+  "pdf_sha256": "b036b0b47f241ec2ecaffee6aa7d8f467df2ba7ddc7fbf59f9af94bc72df674c",
+  "pdf_bytes": 240789,
+  "fonts_embedded": 16,
+  "report_and_scientific_data_hashes_verified": true,
+  "no_missing_glyphs_overfull_boxes_or_unresolved_references": true
+}

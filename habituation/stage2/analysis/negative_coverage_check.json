@@ -1,0 +1,6 @@
+{
+  "missing_prospective_condition_rejected": true,
+  "expected_error": "Missing design",
+  "returncode": 1,
+  "no_partial_analysis_created": true
+}

@@ -1,0 +1,6 @@
+seed,initial_aBN1,late_aBN1,sham_aBN1,resource_reset_aBN1,fast_reset_aBN1,resource_rescue_ratio,resource_rescue_screen,fast_reset_screen,both_reset_full_events_equal,bypass_full_events_equal,naive_bypass_aBN1,trained_bypass_aBN1,naive_bypass_aDN1,trained_bypass_aDN1,naive_bypass_aDN2,trained_bypass_aDN2
+1701,8.0,1.0,1.0,8.0,1.0,1.0,True,True,True,True,10,10,2,2,3,3
+1702,9.0,0.0,0.0,9.0,0.0,1.0,True,True,True,True,10,10,2,2,3,3
+1703,8.0,0.0,0.0,8.0,0.0,1.0,True,True,True,True,10,10,2,2,3,3
+1704,8.0,1.0,1.0,8.0,1.0,1.0,True,True,True,True,10,10,2,2,3,3
+1705,8.0,0.6666666666666666,0.0,8.0,0.0,1.0,True,True,True,True,10,10,2,2,3,3
